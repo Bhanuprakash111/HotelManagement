@@ -1,0 +1,110 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using HotelManagement.Entities;
+
+namespace HotelManagement.DataLayer
+{
+    class MenuItemDAO
+    {
+        private String ConnStr;
+        public MenuItemDAO()
+        {
+            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+        }
+
+        public void AddMenuItem(MenuItem mi)
+        {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Insert into MenuItems Values(@ItemName,@Cost,@Category,@Availability,@Image)", con);
+                cmd.Parameters.AddWithValue("@ItemName", mi.ItemName);
+                cmd.Parameters.AddWithValue("@Cost", mi.Cost);
+                cmd.Parameters.AddWithValue("@Category", mi.Category);
+                cmd.Parameters.AddWithValue("@Availability", mi.Availability); 
+                cmd.Parameters.AddWithValue("@Image", mi.Image);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void EditMenuItem(MenuItem mi)
+        {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Update MenuItems  set ItemName=@ItemName, Cost=@Cost,Category=@Category,Availability=@Availability,Image=@Image", con);
+                cmd.Parameters.AddWithValue("@ItemName", mi.ItemName);
+                cmd.Parameters.AddWithValue("@Cost", mi.Cost);
+                cmd.Parameters.AddWithValue("@Category", mi.Category);
+                cmd.Parameters.AddWithValue("@Availability", mi.Availability);
+                cmd.Parameters.AddWithValue("@Image", mi.Image);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+  
+
+        public void DeleteMenuItem(string ItemName)
+        {
+            using(SqlConnection con=new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Delete from MenuItems where MenuItem=@MenuItem", con);
+                cmd.Parameters.AddWithValue("@ItemName", ItemName);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public MenuItem GetMenuItem(string ItemName)
+        {
+            MenuItem menuItem = new MenuItem();
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from MenuItems where ItemName=@ItemName", con) ;
+                cmd.Parameters.AddWithValue("@ItemName", ItemName);
+                con.Open();
+                using(SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    rdr.Read();
+                    menuItem.ItemName = rdr["ItemName"].ToString();
+                    menuItem.Cost = rdr["Cost"].ToString();
+                    menuItem.Category = rdr["Category"].ToString();
+                    menuItem.Availability = rdr["Availability"].ToString();
+                    menuItem.Image = rdr["Image"].ToString();
+                }
+                return menuItem;
+            }
+
+        }
+             
+
+        public ICollection<MenuItem> GetAllMenuItems()
+        {
+            List<MenuItem> menuItems = new List<MenuItem>();
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from MenuItems", con);
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        MenuItem menuItem = new MenuItem();
+                        menuItem.ItemName = rdr["ItemName"].ToString();
+                        menuItem.Cost = rdr["Cost"].ToString();
+                        menuItem.Category = rdr["Category"].ToString();
+                        menuItem.Availability = rdr["Availability"].ToString();
+                        menuItem.Image = rdr["Image"].ToString();
+                        menuItems.Add(menuItem);
+                    }
+                }
+                return menuItems;
+            }
+        }
+
+
+    }
+}
