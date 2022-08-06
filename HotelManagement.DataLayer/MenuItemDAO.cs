@@ -8,7 +8,7 @@ using HotelManagement.Entities;
 
 namespace HotelManagement.DataLayer
 {
-    class MenuItemDAO
+    public class MenuItemDAO
     {
         private String ConnStr;
         public MenuItemDAO()
