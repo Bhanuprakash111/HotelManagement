@@ -35,7 +35,7 @@ namespace HotelManagement.DataLayer
         {
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Update MenuItems  set ItemName=@ItemName, Cost=@Cost,Category=@Category,Availability=@Availability,Image=@Image", con);
+                SqlCommand cmd = new SqlCommand("Update MenuItems set Cost=@Cost,Category=@Category,Availability=@Availability,Image=@Image where ItemName=@ItemName", con);
                 cmd.Parameters.AddWithValue("@ItemName", mi.ItemName);
                 cmd.Parameters.AddWithValue("@Cost", mi.Cost);
                 cmd.Parameters.AddWithValue("@Category", mi.Category);
@@ -51,7 +51,7 @@ namespace HotelManagement.DataLayer
         {
             using(SqlConnection con=new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Delete from MenuItems where MenuItem=@MenuItem", con);
+                SqlCommand cmd = new SqlCommand("Delete from MenuItems where ItemName=@ItemName", con);
                 cmd.Parameters.AddWithValue("@ItemName", ItemName);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -105,6 +105,16 @@ namespace HotelManagement.DataLayer
             }
         }
 
+/*        public static void Main() { 
+            MenuItemDAO menuItemDAO = new MenuItemDAO();
+            MenuItem menuItem1 = new MenuItem();
+            MenuItem menuItem2 = new MenuItem();
+            MenuItem menuItem3 = new MenuItem();
+            menuItem1.ItemName = "Dosa";menuItem1.Cost = "25";menuItem1.Availability = "no";menuItem1.Category = "breakfast";menuItem1.Image = "";
+            menuItem2.ItemName = "Biriyani";menuItem2.Cost = "250";menuItem2.Availability = "yes";menuItem2.Category = "maincourse";menuItem2.Image = "";
+            menuItem3.ItemName = "IceCream"; menuItem3.Cost = "50"; menuItem3.Availability = "yes"; menuItem3.Category = "desserts"; menuItem3.Image = "";
+            menuItemDAO.AddMenuItem(menuItem3);
+        }*/
 
     }
 }

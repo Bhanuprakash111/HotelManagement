@@ -95,28 +95,5 @@ namespace HotelManagement.DataLayer
                 return users;
             }   
         }
-
-        /*public static void Main(String [] args) { 
-            UserDAO userdao = new UserDAO();
-            User user = new User();
-            user.UserName = "Bhanu";user.Password = "Bhanu123";user.MobileNumber = "7013930455";user.UserRole = "Admin";user.Address = "Tenali";
-            User user1 = new User();
-            user1.UserName = "Vijay";user1.Password = "Vijay123";user1.MobileNumber = "6927352893"; user1.UserRole = "User";
-            user1.Address = "Guntur";
-
-            userdao.AddUser(user);
-            userdao.AddUser(user1);
-            user.Password = "Bhanu456";
-            userdao.EditUser(user);
-            userdao.DeleteUser("Vijay");
-            foreach (var usr in userdao.GetAllUsers()) { 
-                Console.WriteLine(usr.UserName+" "+usr.Password+" "+usr.Address+" "+usr.UserRole+" "+usr.MobileNumber);
-            }
-
-           var usr = userdao.GetUser("Bhanu");
-            Console.WriteLine(usr.UserName + " " + usr.Password + " " + usr.Address + " " + usr.UserRole + " " + usr.MobileNumber);
-           
-            Console.ReadKey();
-        }*/
     }
 }

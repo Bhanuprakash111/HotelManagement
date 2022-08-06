@@ -15,7 +15,7 @@ namespace HotelManagement.DataLayer
         public OrderDAO()
         {
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            ConnStr = "Data Source=LAPTOP-I89K45BK\\SQLEXPRESS01;Initial Catalog=HotelManagement;Integrated Security=True";
+            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
         }
 
         public void AddOrder(Order odr)
@@ -39,11 +39,11 @@ namespace HotelManagement.DataLayer
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
                 SqlCommand cmd = new SqlCommand("Update Orders set TotalCost=@TotalCost, Date=@Date, OrderStatus=" +
-                                                "@OrderStatus, UserName=@UserName where OrderId=@OrderId", con);
+                                                "@OrderStatus where OrderId=@OrderId", con);
                 cmd.Parameters.AddWithValue("@TotalCost", odr.TotalCost);
                 cmd.Parameters.AddWithValue("@Date", odr.Date);
                 cmd.Parameters.AddWithValue("@OrderStatus", odr.OrderStatus);
-                cmd.Parameters.AddWithValue("@UserName", odr.UserUserName);
+                cmd.Parameters.AddWithValue("@OrderId", odr.OrderId);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -66,7 +66,7 @@ namespace HotelManagement.DataLayer
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
                 SqlCommand cmd = new SqlCommand("Select * from Orders where OrderId=@OrderId", con);
-                cmd.Parameters.AddWithValue("@OrderId",od.OrderId);
+                cmd.Parameters.AddWithValue("@OrderId",OrderId);
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
@@ -75,7 +75,7 @@ namespace HotelManagement.DataLayer
                     od.TotalCost = rdr["TotalCost"].ToString();
                     od.Date= (DateTime)rdr["Date"];
                     od.OrderStatus = rdr["OrderStatus"].ToString();
-                    od.UserUserName = rdr["UserName"].ToString();
+                    od.UserUserName = rdr["UserUserName"].ToString();
                 }
                 return od;
 
@@ -99,37 +99,55 @@ namespace HotelManagement.DataLayer
                         odr.TotalCost = rdr["TotalCost"].ToString();
                         odr.Date= (DateTime)rdr["Date"];
                         odr.OrderStatus = rdr["OrderStatus"].ToString();
-                        odr.UserUserName=rdr["UserName"].ToString();
+                        odr.UserUserName=rdr["UserUserName"].ToString();
                         Orders.Add(odr);
                     }
                 }
                 return Orders;
             }
         }
-        /*
-        public static void Main(String [] args) { 
+        
+       public static void Main(String [] args) { 
             OrderDAO orderdao = new OrderDAO();
-            Order odr1 = new Order();
-            odr1.OrderId = 123;odr1.TotalCost = "300 Rs";odr1.Date = "06/08/2022";odr1.OrderStatus = "Order Ready";odr1.UserUserName = "Haritha";
-            Order odr2 = new Order();
-            odr2.OrderId = "234";odr2.TotalCost = "500 Rs";odr2.Date = "05/08/2022"; odr2.OrderStatus = "Order served";
-            odr2.UserUserName = "Vidhya";
+            CartItemDAO cartitemdao = new CartItemDAO();
+            MenuItemDAO menuitemdao = new MenuItemDAO();    
 
-            orderdao.AddOrder(odr1);
-            orderdao.AddOrder(odr2);
-            odr2.UserUserName = "Vidhyamini";
-            orderdao.EditOrder(odr2);
-            orderdao.DeleteOrder("123");
-            foreach (var usr in orderdao.GetAllOrders()) { 
-                Console.WriteLine(odr2.OrderId+" "+odr2.TotalCost+" "+usr.Date+" "+usr.OrderStatus+" "+usr.UserUserName);
+            Order odr1 = new Order();
+            /*odr1.OrderId = Guid.NewGuid()*/;odr1.Date = DateTime.Now;odr1.OrderStatus = "Order Placed";
+            odr1.UserUserName = "Haritha";
+
+            CartItem cartitem = new CartItem();
+/*            cartitem.ItemId = Guid.NewGuid();*/
+            cartitem.OrderOrderId = odr1.OrderId;
+            cartitem.MenuItemItemName = "IceCream";
+            cartitem.Quantity = "10";
+            
+            CartItem cartitem1 = new CartItem();
+/*            cartitem1.ItemId = Guid.NewGuid();*/
+            cartitem1.OrderOrderId = odr1.OrderId;
+            cartitem1.MenuItemItemName = "Biriyani";
+            cartitem1.Quantity = "40";
+
+            odr1.TotalCost = Convert.ToInt32(cartitem.Quantity) * Convert.ToInt32(menuitemdao.GetMenuItem(cartitem.MenuItemItemName).Cost) +
+                             Convert.ToInt32(cartitem1.Quantity) * Convert.ToInt32(menuitemdao.GetMenuItem(cartitem1.MenuItemItemName).Cost)  + "";
+
+            /*orderdao.AddOrder(odr1);*/
+
+            orderdao.GetOrder(new Guid("643aeb09-4269-4d8f-a447-a6bd52b52d51")).OrderStatus = "Order Delivered";
+            orderdao.EditOrder(orderdao.GetOrder(new Guid("643aeb09-4269-4d8f-a447-a6bd52b52d51")));
+
+            /*var order = orderdao.GetOrder(odr1.OrderId);
+            Console.WriteLine(order.UserUserName+" "+order.Date+" "+order.OrderStatus+" "+order.TotalCost);*/
+
+            foreach (var o in orderdao.GetAllOrders()) {
+                Console.WriteLine(o.UserUserName + " " + o.Date + " " + o.OrderStatus + " " + o.TotalCost);
             }
 
-           var odr3 = orderdao.GetOrder("234");
-            Console.WriteLine(odr3.OrderId+ " " + odr3.TotalCost + " " + odr3.Date + " " + odr3.OrderStatus + " " + odr3.UserUserName);
-           
+            /*orderdao.DeleteOrder(odr1.OrderId);*/
+
             Console.ReadKey();
         }
-        */
+        
     }
 }
 

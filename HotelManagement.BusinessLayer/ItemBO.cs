@@ -10,10 +10,10 @@ namespace HotelManagement.BusinessLayer
 {
     public class ItemBO
     {
-        public ItemDAO ItemDAO;
+        public CartItemDAO ItemDAO;
         public ItemBO()
         {
-            ItemDAO = new ItemDAO();
+            ItemDAO = new CartItemDAO();
         }
         public void AddItem(Item Item)
         {

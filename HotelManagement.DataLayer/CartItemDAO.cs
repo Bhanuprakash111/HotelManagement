@@ -10,32 +10,36 @@ using HotelManagement.Entities;
 namespace HotelManagement.DataLayer
 {
     //LAPTOP-N11IRFB2\SQLEXPRESS
-    public class ItemDAO
+    public class CartItemDAO
     {
         private String ConnStr;
-        public ItemDAO()
+        public CartItemDAO()
         {
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            ConnStr = "Data Source=LAPTOP-N11IRFB2\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
         }
-        public void AddItem(Item itm)
+        public void AddItem(CartItem itm)
         {
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Insert into Items Values(@ItemId,@Quantity)", con);
+                SqlCommand cmd = new SqlCommand("Insert into CartItems Values(@ItemId,@OrderId,@ItemName,@Quantity)", con);
                 cmd.Parameters.AddWithValue("@ItemId", itm.ItemId);
                 cmd.Parameters.AddWithValue("@Quantity", itm.Quantity);
+                cmd.Parameters.AddWithValue("@OrderId", itm.OrderOrderId);
+                cmd.Parameters.AddWithValue("@ItemName", itm.MenuItemItemName);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
         }
-        public void EditItem(Item itm)
+        public void EditItem(CartItem itm)
         {
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Update  Items set ItemId=@ItemId,Quantity=@Quantity ", con);
+                SqlCommand cmd = new SqlCommand("Update CartItems set ItemId=@ItemId,OrderOrderId=@OrderId,MenuItemItemName=@ItemName,Quantity=@Quantity", con);
                 cmd.Parameters.AddWithValue("@ItemId", itm.ItemId);
                 cmd.Parameters.AddWithValue("@Quantity", itm.Quantity);
+                cmd.Parameters.AddWithValue("@OrderId", itm.OrderOrderId);
+                cmd.Parameters.AddWithValue("@ItemName", itm.MenuItemItemName);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -45,18 +49,18 @@ namespace HotelManagement.DataLayer
         {
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Delete from Items where ItemId=@ItemId", con);
+                SqlCommand cmd = new SqlCommand("Delete from CartItems where ItemId=@ItemId", con);
                 cmd.Parameters.AddWithValue("@ItemId", ItemId);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
         }
-        public Item GetItem(Guid ItemId)
+        public CartItem GetItem(Guid ItemId)
         {
-            Item itm = new Item();
+            CartItem itm = new CartItem();
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Select * from Items where ItemId=@ItemId", con);
+                SqlCommand cmd = new SqlCommand("Select * from CartItems where ItemId=@ItemId", con);
                 cmd.Parameters.AddWithValue("@ItemId", ItemId);
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -64,26 +68,30 @@ namespace HotelManagement.DataLayer
                     rdr.Read();
                     itm.ItemId = (Guid)rdr["ItemId"];
                     itm.Quantity = rdr["Quantity"].ToString();
+                    itm.OrderOrderId = (Guid)rdr["OrderOrderId"];
+                    itm.MenuItemItemName = rdr["MenuItemItemName"].ToString();
 
                 }
                 return itm;
 
             }
         }
-        public ICollection<Item> GetItems()
+        public ICollection<CartItem> GetItems()
         {
-            List<Item> itm = new List<Item>();
+            List<CartItem> itm = new List<CartItem>();
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Select * from Items", con);
+                SqlCommand cmd = new SqlCommand("Select * from CartItems", con);
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
                     while (rdr.Read())
                     {
-                        Item  it = new Item();
+                        CartItem  it = new CartItem();
                         it.ItemId = (Guid) rdr["ItemId"];
                         it.Quantity = rdr["Quantity"].ToString();
+                        it.OrderOrderId = (Guid)rdr["OrderOrderId"];
+                        it.MenuItemItemName = rdr["MenuItemItemName"].ToString();
                         
                     }
                 }

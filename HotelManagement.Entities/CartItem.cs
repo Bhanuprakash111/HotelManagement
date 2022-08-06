@@ -12,13 +12,14 @@ namespace HotelManagement.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Item
+    public partial class CartItem
     {
         public System.Guid ItemId { get; set; }
-        public string Quantity { get; set; }
         public System.Guid OrderOrderId { get; set; }
+        public string MenuItemItemName { get; set; }
+        public string Quantity { get; set; }
     
-        public virtual MenuItem MenuItem { get; set; }
         public virtual Order Order { get; set; }
+        public virtual MenuItem MenuItem { get; set; }
     }
 }

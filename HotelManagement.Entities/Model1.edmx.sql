@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/05/2022 14:05:14
+-- Date Created: 08/06/2022 22:22:26
 -- Generated from EDMX file: C:\Users\mbhan\source\repos\HotelManagement\HotelManagement.Entities\Model1.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,23 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UserOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_UserOrder];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[MenuItems]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MenuItems];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -53,16 +65,16 @@ CREATE TABLE [dbo].[MenuItems] (
     [Cost] nvarchar(max)  NOT NULL,
     [Category] nvarchar(max)  NOT NULL,
     [Availability] nvarchar(max)  NOT NULL,
-    [Image] nvarchar(max)  NOT NULL,
-    [Item_ItemId] uniqueidentifier  NOT NULL
+    [Image] nvarchar(max)  NOT NULL
 );
 GO
 
--- Creating table 'Items'
-CREATE TABLE [dbo].[Items] (
+-- Creating table 'CartItems'
+CREATE TABLE [dbo].[CartItems] (
     [ItemId] uniqueidentifier  NOT NULL,
-    [Quantity] nvarchar(max)  NOT NULL,
-    [OrderOrderId] uniqueidentifier  NOT NULL
+    [OrderOrderId] uniqueidentifier  NOT NULL,
+    [MenuItemItemName] nvarchar(50)  NOT NULL,
+    [Quantity] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -88,9 +100,9 @@ ADD CONSTRAINT [PK_MenuItems]
     PRIMARY KEY CLUSTERED ([ItemName] ASC);
 GO
 
--- Creating primary key on [ItemId] in table 'Items'
-ALTER TABLE [dbo].[Items]
-ADD CONSTRAINT [PK_Items]
+-- Creating primary key on [ItemId] in table 'CartItems'
+ALTER TABLE [dbo].[CartItems]
+ADD CONSTRAINT [PK_CartItems]
     PRIMARY KEY CLUSTERED ([ItemId] ASC);
 GO
 
@@ -113,34 +125,34 @@ ON [dbo].[Orders]
     ([UserUserName]);
 GO
 
--- Creating foreign key on [Item_ItemId] in table 'MenuItems'
-ALTER TABLE [dbo].[MenuItems]
-ADD CONSTRAINT [FK_MenuItemItem]
-    FOREIGN KEY ([Item_ItemId])
-    REFERENCES [dbo].[Items]
-        ([ItemId])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MenuItemItem'
-CREATE INDEX [IX_FK_MenuItemItem]
-ON [dbo].[MenuItems]
-    ([Item_ItemId]);
-GO
-
--- Creating foreign key on [OrderOrderId] in table 'Items'
-ALTER TABLE [dbo].[Items]
-ADD CONSTRAINT [FK_OrderItem]
+-- Creating foreign key on [OrderOrderId] in table 'CartItems'
+ALTER TABLE [dbo].[CartItems]
+ADD CONSTRAINT [FK_OrderCartItem]
     FOREIGN KEY ([OrderOrderId])
     REFERENCES [dbo].[Orders]
         ([OrderId])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_OrderItem'
-CREATE INDEX [IX_FK_OrderItem]
-ON [dbo].[Items]
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderCartItem'
+CREATE INDEX [IX_FK_OrderCartItem]
+ON [dbo].[CartItems]
     ([OrderOrderId]);
+GO
+
+-- Creating foreign key on [MenuItemItemName] in table 'CartItems'
+ALTER TABLE [dbo].[CartItems]
+ADD CONSTRAINT [FK_MenuItemCartItem]
+    FOREIGN KEY ([MenuItemItemName])
+    REFERENCES [dbo].[MenuItems]
+        ([ItemName])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MenuItemCartItem'
+CREATE INDEX [IX_FK_MenuItemCartItem]
+ON [dbo].[CartItems]
+    ([MenuItemItemName]);
 GO
 
 -- --------------------------------------------------
