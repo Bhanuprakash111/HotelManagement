@@ -14,7 +14,7 @@ namespace HotelManagement.DataLayer
         private String ConnStr;
         public UserDAO() {
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
         }
 
         public void AddUser(User usr) {

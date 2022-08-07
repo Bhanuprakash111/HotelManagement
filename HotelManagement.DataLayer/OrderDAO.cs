@@ -15,7 +15,7 @@ namespace HotelManagement.DataLayer
         public OrderDAO()
         {
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
         }
 
         public void AddOrder(Order odr)
@@ -66,14 +66,14 @@ namespace HotelManagement.DataLayer
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
                 SqlCommand cmd = new SqlCommand("Select * from Orders where OrderId=@OrderId", con);
-                cmd.Parameters.AddWithValue("@OrderId",OrderId);
+                cmd.Parameters.AddWithValue("@OrderId", OrderId);
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
                     rdr.Read();
                     od.OrderId = (Guid)rdr["OrderId"];
                     od.TotalCost = rdr["TotalCost"].ToString();
-                    od.Date= (DateTime)rdr["Date"];
+                    od.Date = (DateTime)rdr["Date"];
                     od.OrderStatus = rdr["OrderStatus"].ToString();
                     od.UserUserName = rdr["UserUserName"].ToString();
                 }
@@ -82,7 +82,7 @@ namespace HotelManagement.DataLayer
             }
         }
 
-        
+
         public ICollection<Order> GetAllOrders()
         {
             List<Order> Orders = new List<Order>();
@@ -97,57 +97,85 @@ namespace HotelManagement.DataLayer
                         Order odr = new Order();
                         odr.OrderId = (Guid)rdr["OrderId"];
                         odr.TotalCost = rdr["TotalCost"].ToString();
-                        odr.Date= (DateTime)rdr["Date"];
+                        odr.Date = (DateTime)rdr["Date"];
                         odr.OrderStatus = rdr["OrderStatus"].ToString();
-                        odr.UserUserName=rdr["UserUserName"].ToString();
+                        odr.UserUserName = rdr["UserUserName"].ToString();
                         Orders.Add(odr);
                     }
                 }
                 return Orders;
             }
         }
-        
-       public static void Main(String [] args) { 
-            OrderDAO orderdao = new OrderDAO();
-            CartItemDAO cartitemdao = new CartItemDAO();
-            MenuItemDAO menuitemdao = new MenuItemDAO();    
 
-            Order odr1 = new Order();
-            /*odr1.OrderId = Guid.NewGuid()*/;odr1.Date = DateTime.Now;odr1.OrderStatus = "Order Placed";
-            odr1.UserUserName = "Haritha";
+        /*public static void Main(String [] args) { 
+             OrderDAO orderdao = new OrderDAO();
+             CartItemDAO cartitemdao = new CartItemDAO();
+             MenuItemDAO menuitemdao = new MenuItemDAO();
+
+
+
+             //addOrder
+             *//*Order odr1 = new Order();
+             odr1.OrderId = Guid.NewGuid();
+             odr1.TotalCost = "120";
+             odr1.Date = DateTime.Now;
+             odr1.OrderStatus = "Order Placed";
+             odr1.UserUserName = "hari";
+
 
             CartItem cartitem = new CartItem();
-/*            cartitem.ItemId = Guid.NewGuid();*/
-            cartitem.OrderOrderId = odr1.OrderId;
-            cartitem.MenuItemItemName = "IceCream";
-            cartitem.Quantity = "10";
-            
-            CartItem cartitem1 = new CartItem();
-/*            cartitem1.ItemId = Guid.NewGuid();*/
-            cartitem1.OrderOrderId = odr1.OrderId;
-            cartitem1.MenuItemItemName = "Biriyani";
-            cartitem1.Quantity = "40";
+           cartitem.ItemId = Guid.NewGuid();
+             cartitem.OrderOrderId = odr1.OrderId;
+             cartitem.MenuItemItemName = "Dosa";
+             cartitem.Quantity = "2";
 
-            odr1.TotalCost = Convert.ToInt32(cartitem.Quantity) * Convert.ToInt32(menuitemdao.GetMenuItem(cartitem.MenuItemItemName).Cost) +
-                             Convert.ToInt32(cartitem1.Quantity) * Convert.ToInt32(menuitemdao.GetMenuItem(cartitem1.MenuItemItemName).Cost)  + "";
 
-            /*orderdao.AddOrder(odr1);*/
+             CartItem cartitem1 = new CartItem();
+             cartitem1.ItemId = Guid.NewGuid();
+             cartitem1.OrderOrderId = odr1.OrderId;
+             cartitem1.MenuItemItemName = "Idly";
+             cartitem1.Quantity = "2";
 
-            orderdao.GetOrder(new Guid("643aeb09-4269-4d8f-a447-a6bd52b52d51")).OrderStatus = "Order Delivered";
-            orderdao.EditOrder(orderdao.GetOrder(new Guid("643aeb09-4269-4d8f-a447-a6bd52b52d51")));
 
-            /*var order = orderdao.GetOrder(odr1.OrderId);
-            Console.WriteLine(order.UserUserName+" "+order.Date+" "+order.OrderStatus+" "+order.TotalCost);*/
+             odr1.TotalCost = Convert.ToInt32(cartitem.Quantity) * Convert.ToInt32(menuitemdao.GetMenuItem(cartitem.MenuItemItemName).Cost) +
+                              Convert.ToInt32(cartitem1.Quantity) * Convert.ToInt32(menuitemdao.GetMenuItem(cartitem1.MenuItemItemName).Cost)  + "";
 
-            foreach (var o in orderdao.GetAllOrders()) {
-                Console.WriteLine(o.UserUserName + " " + o.Date + " " + o.OrderStatus + " " + o.TotalCost);
-            }
+            orderdao.AddOrder(odr1);
+             cartitemdao.AddItem(cartitem);
+             cartitemdao.AddItem(cartitem1);*//*
 
-            /*orderdao.DeleteOrder(odr1.OrderId);*/
+             //EditOrder
+             *//* Order c=orderdao.GetOrder(new Guid("3777e19c-2a5f-40e4-8e32-c074cda9699b"));
+             c.OrderStatus = "order delivered";
+             orderdao.EditOrder(c);*//*
 
-            Console.ReadKey();
-        }
-        
+             //GetOrder
+             *//* var order = orderdao.GetOrder(new Guid("8DE932B6-3694-409B-A379-8976273AE149"));
+             Console.WriteLine(order.UserUserName+" "+order.Date+" "+order.OrderStatus+" "+order.TotalCost);*//*
+
+             //GetAllOrders
+             *//*foreach (var o in orderdao.GetAllOrders()) {
+                 Console.WriteLine(o.UserUserName + " " + o.Date + " " + o.OrderStatus + " " + o.TotalCost);
+             }*//*
+
+             //DeleteOrder
+             //orderdao.DeleteOrder(new Guid("3777e19c-2a5f-40e4-8e32-c074cda9699b"));
+
+
+
+             //CartItem Operations
+            *//* CartItem obj=cartitemdao.GetItem(new Guid("5d13e521-cd00-4da5-b827-b4fa628cdac5"));
+             obj.Quantity = "3";
+             cartitemdao.EditItem(obj);*/
+
+        /*foreach(var c in cartitemdao.GetItemsbyOrderId(new Guid("8de932b6-3694-409b-a379-8976273ae149")))
+        {
+            Console.WriteLine(c.MenuItemItemName + " " + c.OrderOrderId + " " + c.Quantity);
+        }*/
+        /* cartitemdao.DeleteItem(new Guid("7d5ca85f-e075-4b34-96b1-3954a24bc549"));
+         Console.ReadKey();*//*
+     }
+
+ */
     }
 }
-
