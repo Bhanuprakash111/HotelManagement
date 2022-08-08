@@ -38,6 +38,8 @@ namespace HotelManagement.UI
                           "~/Scripts/bootstrap.bundle.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.min.css", "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                          "~/Scripts/jquery-3.6.0.min.js"));
         }
     }
 }

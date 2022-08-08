@@ -75,7 +75,9 @@
 
     </form>
     <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/jquery") %>
         <%: Scripts.Render("~/bundles/bootstrap") %>
     </asp:PlaceHolder>
+
 </body>
 </html>
