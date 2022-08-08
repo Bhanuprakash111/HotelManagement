@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManagement.BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,18 @@ namespace HotelManagement.UI.Menu
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            MenuItemBO menuItemBO = new MenuItemBO();
 
+            CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDown.SelectedValue);
+            CardRepeater.DataBind();
+        }
+
+        protected void MenuDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MenuItemBO menuItemBO = new MenuItemBO();
+
+            CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDown.SelectedValue);
+            CardRepeater.DataBind();
         }
     }
 }

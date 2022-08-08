@@ -1,16 +1,47 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ListMenuItems.aspx.cs" Inherits="HotelManagement.UI.Menu.ListMenuItems" %>
 
 <asp:Content ID="Customer" ContentPlaceHolderID="CustomerContent" runat="server">
-    <div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Dropdown link
-        </a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+    <div class="d-flex mt-3 offset-3">
+        <span class="lead p-1">Select your Style : </span>
+        <asp:DropDownList ID="MenuDropDown" CssClass="custom-select ml-4 w-25" runat="server" OnSelectedIndexChanged="MenuDropDown_SelectedIndexChanged" AutoPostBack="True">
+            <asp:ListItem>BreakFast</asp:ListItem>
+            <asp:ListItem>Starters</asp:ListItem>
+            <asp:ListItem>Desserts</asp:ListItem>
+            <asp:ListItem>MainCourse</asp:ListItem>
+            <asp:ListItem>IceCream</asp:ListItem>
+        </asp:DropDownList>
     </div>
-     <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/bootstrap") %>
-    </asp:PlaceHolder>
+    <div class="row mt-3 ml-5">
+        <asp:Repeater ID="CardRepeater" runat="server">
+            <ItemTemplate>
+                <div class="card mb-3 mx-2 col-4 col-md-6 col-sm-12 p-0" style="max-width: 400px;">
+                    <div class="row no-gutters">
+                        <div class="col-6 img-fluid img">
+                            <img src="https://picsum.photos/200" alt="FoodImage">
+                        </div>
+                        <div class="col-6">
+                            <div class="card-body">
+                                <h5 class="h3 text-center"><%#DataBinder.Eval(Container,"DataItem.ItemName")%> </h5>
+                                <div class="d-flex justify-content-center">
+                                    <div class="pr-3 lead">Cost:</div>
+                                    <p class="card-text lead">₹<%#DataBinder.Eval(Container,"DataItem.Cost")%>  </p>
+                                </div>
+                                <div class="d-flex justify-content-center mt-1">
+                                    <div class="pr-3 ">Availability: </div>
+                                    <p class="card-text "><%#DataBinder.Eval(Container,"DataItem.Availability")%> </p>
+                                </div>
+                            </div>
+                            <div class="offset-2 btn btn-warning" style="cursor: pointer; color: dodgerblue" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight5" aria-controls="offcanvasRight">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z" />
+                                </svg>
+                                <span class="text-dark">Add to Cart</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+
 </asp:Content>
