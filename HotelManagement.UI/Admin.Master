@@ -63,7 +63,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
+        <div class="container-fluid">
             <asp:ContentPlaceHolder ID="AdminContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
