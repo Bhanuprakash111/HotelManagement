@@ -32,9 +32,9 @@ namespace HotelManagement.BusinessLayer
             MenuItemDAO.GetMenuItem(ItemName);
         }
 
-        public ICollection<MenuItem> GetAllMenuItems()
+        public ICollection<MenuItem> GetAllMenuItemsByCategory(string Category)
         {
-            return MenuItemDAO.GetAllMenuItems();
+            return MenuItemDAO.GetAllMenuItemsByCategory(Category);
         }
     }
 }

@@ -13,7 +13,8 @@ namespace HotelManagement.DataLayer
         private String ConnStr;
         public MenuItemDAO()
         {
-            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            /*ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";*/
+            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
         }
 
         public void AddMenuItem(MenuItem mi)
@@ -81,12 +82,13 @@ namespace HotelManagement.DataLayer
         }
              
 
-        public ICollection<MenuItem> GetAllMenuItems()
+        public ICollection<MenuItem> GetAllMenuItemsByCategory(string Category)
         {
             List<MenuItem> menuItems = new List<MenuItem>();
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Select * from MenuItems", con);
+                SqlCommand cmd = new SqlCommand("Select * from MenuItems where Category=@Category", con);
+                cmd.Parameters.AddWithValue("@Category", Category);
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {
