@@ -14,7 +14,6 @@
     <div class="row mt-3 ml-5">
         <asp:Repeater ID="CardRepeater" runat="server">
             <ItemTemplate>
-                <div id="<%#DataBinder.Eval(Container,"DataItem.ItemName")%>">
                     <div class="card mb-3 mx-2 col-4 col-md-6 col-sm-12 p-0" style="max-width: 400px;">
                         <div class="row no-gutters">
                             <div class="col-6 img-fluid img">
@@ -42,7 +41,6 @@
                             </div>
                         </div>
                     </div>
-                 </div>
             </ItemTemplate>
         </asp:Repeater>
     </div>

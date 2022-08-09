@@ -24,6 +24,69 @@ namespace HotelManagement.UI.Menu
         protected global::System.Web.UI.WebControls.DropDownList MenuDropDownAdmin;
 
         /// <summary>
+        /// upModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upModal;
+
+        /// <summary>
+        /// EditItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField EditItemName;
+
+        /// <summary>
+        /// EditItemCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField EditItemCategory;
+
+        /// <summary>
+        /// EditItemCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EditItemCost;
+
+        /// <summary>
+        /// EditItemAvailability control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EditItemAvailability;
+
+        /// <summary>
+        /// EditItemImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox EditItemImage;
+
+        /// <summary>
+        /// SaveEditChanges control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveEditChanges;
+
+        /// <summary>
         /// CardRepeaterAdmin control.
         /// </summary>
         /// <remarks>
