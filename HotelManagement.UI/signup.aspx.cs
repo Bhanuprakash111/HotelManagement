@@ -13,23 +13,29 @@ namespace HotelManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            User usr = new User();
-            usr.UserName = TextBox1.Text;
-            usr.Password = TextBox2.Text;
-            usr.Address = TextBox3.Text;
-            usr.MobileNumber = TextBox4.Text;
-            usr.UserRole = TextBox5.Text;
-
             UserBO userBO = new UserBO();
-            userBO.AddUser(usr);
-
-
-            Response.Redirect("login.aspx");
+            if (mobileNumber.Text.Length != 10)
+            {
+                SignUpWarningText.Text = "Mobile number should have 10 digits";
+            }
+            else if(userBO.IsUserNameAvailable(userName.Text)) {
+                SignUpWarningText.Text = "UserName is Already Taken";
+            }
+            else
+            {
+                User usr = new User();
+                usr.UserName = userName.Text;
+                usr.Password = password.Text;
+                usr.Address = address.Text;
+                usr.MobileNumber = mobileNumber.Text;
+                userBO.AddUser(usr);
+                
+                Response.Redirect("login.aspx");
+            }
         }
     }
 }

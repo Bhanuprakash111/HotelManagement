@@ -39,19 +39,48 @@
                                 </div>
                             </div>
                             <div class="d-flex justity-content-center ml-3">
-                                <div class="my-auto lead btn btn-success" style="cursor: pointer; color: dodgerblue" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <asp:LinkButton ID="EditMenuItem" class=" btn btn-primary" runat="server" data-toggle="modal" data-target="#EditModal" CommandArgument='<%#DataBinder.Eval(Container,"DataItem.ItemName")%>' OnClick="EditButton_Click">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                         <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                                     </svg>
                                     <span class="text-light">Edit</span>
+                                </asp:LinkButton>
+
+                                <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit MenuItem</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label>Item Cost</label>
+                                                <asp:TextBox class="form-control mb-2" ID="EditItemCost" type="number" runat="server"></asp:TextBox>
+                                                <label>Item Availability</label>
+                                                <asp:DropDownList ID="EditItemAvailability" CssClass="custom-select mb-2" runat="server">
+                                                    <asp:ListItem Value="yes">Yes</asp:ListItem>
+                                                    <asp:ListItem Value="no">No</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <label>Item Image</label>
+                                                <asp:TextBox class="form-control" ID="EditItemImage" runat="server"></asp:TextBox>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <asp:HyperLink ID="DeleteMenuItem" class=" ml-2 btn btn-danger" runat="server">
+
+                                <asp:LinkButton ID="DeleteMenuItem" class=" ml-2 btn btn-danger" runat="server" CommandArgument='<%#DataBinder.Eval(Container,"DataItem.ItemName")%>' OnClick="DeleteButton_Click">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                     </svg>
-                                    Delete
-                                </asp:HyperLink>
-                                
+                                     <span class="text-light">Delete</span>
+                                </asp:LinkButton>
+
                             </div>
 
                         </div>

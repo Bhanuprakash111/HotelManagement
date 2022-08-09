@@ -15,13 +15,14 @@ namespace HotelManagement.BusinessLayer
         {
                 UserDAO = new UserDAO();
         }
-        public void AddUser(User UserName)
+        public void AddUser(User user)
         {
-                UserDAO.AddUser(UserName);
+            user.UserRole = "User";
+            UserDAO.AddUser(user);
         }
-        public void EditUser(User UserName)
+        public void EditUser(User user)
         {
-                UserDAO.EditUser(UserName);
+                UserDAO.EditUser(user);
         }
         public void DeleteUser(string UserName)
         {
@@ -30,6 +31,9 @@ namespace HotelManagement.BusinessLayer
         public User GetUser(string UserName)
         {
             return UserDAO.GetUser(UserName);
+        }
+        public bool IsUserNameAvailable(string UserName) {
+            return UserDAO.IsUserNameAvailable(UserName);
         }
         public ICollection<User> GetAllUsers()
         {

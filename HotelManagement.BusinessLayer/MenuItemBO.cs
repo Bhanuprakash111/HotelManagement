@@ -27,9 +27,9 @@ namespace HotelManagement.BusinessLayer
         {
             MenuItemDAO.DeleteMenuItem(ItemName);
         }
-        public void GetMenuItem(string ItemName)
+        public MenuItem GetMenuItem(string ItemName)
         {
-            MenuItemDAO.GetMenuItem(ItemName);
+            return MenuItemDAO.GetMenuItem(ItemName);
         }
 
         public ICollection<MenuItem> GetAllMenuItemsByCategory(string Category)

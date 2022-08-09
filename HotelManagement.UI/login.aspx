@@ -12,32 +12,39 @@
     </asp:PlaceHolder>
 </head>
 <body>
-    <div class="d-flex align-items-center justify-content-center">
-        <div class="d-flex justify-content-center">
-            <form id="form1" runat="server">
-
-                <div class="font-weight-bold">
-                    <asp:Label class="btn-block mb-4" ID="Label2" runat="server" Text="Login to you Account" Font-Size="20pt" ForeColor="#000066" Width="400px" BackColor="#CCCCCC"></asp:Label>
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="exampleInputEmail1">UserName</label>
-                    <asp:TextBox class="form-control" ID="TextBox1" runat="server" Width="400px"></asp:TextBox>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <asp:TextBox ID="TextBox2" type="password" class="form-control" runat="server" MaxLength="50" Width="400px"></asp:TextBox>
-                </div>
-                <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label><br />
-
-                <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click" /><br /> 
-                <br />
-                <asp:Button ID="Button2" runat="server" Text="Signup" OnClick="Button2_Click" />
-
-            </form>
+    <div class="d-flex mt-2">
+        <div class="">
+            <span class="font-weight-bolder h3 ml-5  d-block">Food Mafia</span>
+            <span class="h6 ml-5 ">Food For Every Taste</span>
+         </div>
+        <h4 class="text-center mt-3 offset-3">Log In to Your Food Mafia Account!</h4>
+    </div>
+    <hr />
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-lg-6 col-sm-12 text-center">
+                <asp:Image ID="Image1" ImageUrl="~/Content/images/Login.jpg" CssClass="img-fluid rounded" Height="550px" runat="server" />
+            </div>
+            <div class="col-lg-6 mt-5">
+                <form id="form1" runat="server" class=" mt-5 offset-3">
+                    <div class="form-group">
+                        <label for="username">UserName</label>
+                        <asp:TextBox class="form-control" required="true" ID="TextBox1" runat="server" Width="400px"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <asp:TextBox ID="TextBox2" type="password" required="true" class="form-control" runat="server" MaxLength="50" Width="400px"></asp:TextBox>
+                    </div>
+                    <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label><br />
+                    <div class="d-flex mt-2">
+                        <asp:Button ID="Button1" class="offset-3 btn btn-primary" runat="server" Text="Login" OnClick="Button1_Click" /><br />
+                        <asp:Button ID="Button2" class="ml-3 btn btn-info" runat="server" Text="Signup" OnClick="Button2_Click" UseSubmitBehavior="False" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-           
+
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/jquery") %>
         <%: Scripts.Render("~/bundles/bootstrap") %>

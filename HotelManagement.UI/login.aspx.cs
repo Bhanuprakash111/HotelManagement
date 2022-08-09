@@ -13,23 +13,32 @@ namespace HotelManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             UserBO userBO = new UserBO();
-            var x=userBO.GetUser(TextBox1.Text);
-            if (TextBox1.Text ==x.UserName && TextBox2.Text == x.Password)
+            if (userBO.IsUserNameAvailable(TextBox1.Text))
             {
-
-                
-                Response.Redirect("Menu/ListMenuItems.aspx");
+                var user = userBO.GetUser(TextBox1.Text);
+                if (TextBox2.Text.Equals(user.Password))
+                {
+                    Label1.Text = "";
+                    if (user.UserRole.Equals("Admin"))
+                        Response.Redirect("Menu/ListMenuItemsForAdmin.aspx");
+                    Response.Redirect("Menu/ListMenuItems.aspx");
+                }
+                else
+                {
+                    Label1.Text = "Incorrect UserName/Password";
+                }
             }
             else
             {
-                Label1.Text = "Enter valid details ";
+                Label1.Text = "Incorrect UserName/Password";
             }
+
         }
 
         protected void Button2_Click(object sender, EventArgs e)

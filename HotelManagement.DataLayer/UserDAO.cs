@@ -77,6 +77,18 @@ namespace HotelManagement.DataLayer
                 
             } 
         }
+        
+        public bool IsUserNameAvailable(string UserName)
+        {
+            User user = new User();
+            using (SqlConnection con = new SqlConnection(ConnStr)) {
+                SqlCommand cmd = new SqlCommand("Select * from Users where UserName=@UserName", con);
+                cmd.Parameters.AddWithValue("@UserName", UserName);
+                con.Open();
+                return cmd.ExecuteReader().HasRows;
+                
+            } 
+        }
 
         public ICollection<User> GetAllUsers() {
             List<User> users = new List<User>();
