@@ -15,8 +15,6 @@ namespace HotelManagement.DataLayer
         public OrderDAO()
         {
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
-            //ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
             //ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
             //ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
             ConnStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HotelManagement;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
@@ -85,13 +83,14 @@ namespace HotelManagement.DataLayer
 
             }
         }
-        public Order GetOrderbyStatus(string OrderStatus)
+        public Order GetOrderbyStatus(string OrderStatus, string UserName)
         {
             Order od = new Order();
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Select * from Orders where OrderStatus=@OrderStatus", con);
+                SqlCommand cmd = new SqlCommand("Select * from Orders where UserUserName=@UserName AND OrderStatus=@OrderStatus", con);
                 cmd.Parameters.AddWithValue("@OrderStatus", OrderStatus);
+                cmd.Parameters.AddWithValue("@UserName", UserName);
 
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -107,7 +106,17 @@ namespace HotelManagement.DataLayer
 
             }
         }
-
+        public bool AnyOrderStandBy(String UserName) {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Orders where UserUserName=@UserName AND OrderStatus='Inprogress'", con);
+                cmd.Parameters.AddWithValue("@UserName", UserName);
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader()) {
+                    return rdr.HasRows;
+                }
+            }
+        }
 
         public ICollection<Order> GetAllOrders()
         {

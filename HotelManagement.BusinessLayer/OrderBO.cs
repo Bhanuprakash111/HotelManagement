@@ -31,9 +31,12 @@ namespace HotelManagement.BusinessLayer
         {
             return OrderDAO.GetOrder(OrderId);
         }
-        public Order GetOrderbyStatus(string OrderStatus)
+        public Order GetOrderbyStatus(string OrderStatus, string UserName)
         {
-            return OrderDAO.GetOrderbyStatus(OrderStatus);
+            return OrderDAO.GetOrderbyStatus(OrderStatus,UserName);
+        }
+        public bool AnyOrderStandBy(String UserName) {
+            return OrderDAO.AnyOrderStandBy(UserName);
         }
         public ICollection<Order> GetAllOrders()
         {

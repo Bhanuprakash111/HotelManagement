@@ -18,7 +18,6 @@ namespace HotelManagement.DataLayer
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
             //ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
            ConnStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HotelManagement;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
            //ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
         }
         public void AddItem(CartItem itm)
@@ -77,6 +76,19 @@ namespace HotelManagement.DataLayer
                 }
                 return itm;
 
+            }
+        }
+        public bool isInCart(string ItemName, Guid OrderId) {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from CartItems where OrderOrderId=@OrderId AND MenuItemItemName=@ItemName", con);
+                cmd.Parameters.AddWithValue("@OrderId", OrderId);
+                cmd.Parameters.AddWithValue("@ItemName", ItemName);
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    return rdr.HasRows;
+                }
             }
         }
         public ICollection<CartItem> GetItemsbyOrderId(Guid OrderId)

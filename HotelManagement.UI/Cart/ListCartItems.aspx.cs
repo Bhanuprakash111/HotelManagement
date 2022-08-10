@@ -15,12 +15,18 @@ namespace HotelManagement.UI.Cart
         {
             if(!IsPostBack)
             {
+                string CurrentLoggedInUser = "Bhanu";
                 OrderBO ob = new OrderBO();
-                
-                Entities.Order order=ob.GetOrderbyStatus("Inprogress");
-                Repeater1.DataSource = cb.GetItemsbyOrderId(order.OrderId);
-                Repeater1.DataBind();
-
+                if (ob.AnyOrderStandBy(CurrentLoggedInUser))
+                {
+                    Entities.Order order = ob.GetOrderbyStatus("Inprogress", CurrentLoggedInUser);
+                    ListView1.DataSource = cb.GetItemsbyOrderId(order.OrderId);
+                    ListView1.DataBind();
+                }
+                else { 
+                    ListView1.DataSource=null;
+                    ListView1.DataBind();
+                }
             }
         }
         protected void DeleteButton_Click(object sender, EventArgs e)
@@ -33,13 +39,13 @@ namespace HotelManagement.UI.Cart
 
         protected void Quantity_TextChanged(object sender, EventArgs e)
         {
-            /*TextBox tb = (TextBox)sender;
-            Guid id = new Guid(tb.);
-            Entities.CartItem item = cb.GetItem(id) ;
-            
-            item.Quantity = tb.Text;
+            TextBox tb = (TextBox)sender;
+            HiddenField hf  =(HiddenField)tb.Parent.FindControl("HiddenItemId");
+            Guid id = new Guid(hf.Value);
 
-            cb.EditItem(item);*/
+            Entities.CartItem item = cb.GetItem(id);
+            item.Quantity = tb.Text;
+            cb.EditItem(item);
         }
         
     }
