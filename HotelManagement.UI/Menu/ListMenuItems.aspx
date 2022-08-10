@@ -2,9 +2,9 @@
 
 <asp:Content ID="Customer" ContentPlaceHolderID="CustomerContent" runat="server">
     <div class="d-flex mt-3 offset-3">
-        <span class="lead p-1">Select your Style : </span>
+        <span class="lead p-1">Select your Category : </span>
         <asp:DropDownList ID="MenuDropDown" CssClass="custom-select ml-4 w-25" runat="server" OnSelectedIndexChanged="MenuDropDown_SelectedIndexChanged" AutoPostBack="True">
-            <asp:ListItem>BreakFast</asp:ListItem>
+            <asp:ListItem>Breakfast</asp:ListItem>
             <asp:ListItem>Starters</asp:ListItem>
             <asp:ListItem>Desserts</asp:ListItem>
             <asp:ListItem>MainCourse</asp:ListItem>

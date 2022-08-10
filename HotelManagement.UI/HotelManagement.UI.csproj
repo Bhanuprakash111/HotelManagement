@@ -105,6 +105,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cart\ListCartItems.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -258,6 +259,13 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Cart\ListCartItems.aspx.cs">
+      <DependentUpon>ListCartItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart\ListCartItems.aspx.designer.cs">
+      <DependentUpon>ListCartItems.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

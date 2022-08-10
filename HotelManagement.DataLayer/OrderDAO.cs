@@ -15,8 +15,8 @@ namespace HotelManagement.DataLayer
         public OrderDAO()
         {
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            //ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
-            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            //ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
         }
 
         public void AddOrder(Order odr)
@@ -68,6 +68,28 @@ namespace HotelManagement.DataLayer
             {
                 SqlCommand cmd = new SqlCommand("Select * from Orders where OrderId=@OrderId", con);
                 cmd.Parameters.AddWithValue("@OrderId", OrderId);
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    rdr.Read();
+                    od.OrderId = (Guid)rdr["OrderId"];
+                    od.TotalCost = rdr["TotalCost"].ToString();
+                    od.Date = (DateTime)rdr["Date"];
+                    od.OrderStatus = rdr["OrderStatus"].ToString();
+                    od.UserUserName = rdr["UserUserName"].ToString();
+                }
+                return od;
+
+            }
+        }
+        public Order GetOrderbyStatus(string OrderStatus)
+        {
+            Order od = new Order();
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Orders where OrderStatus=@OrderStatus", con);
+                cmd.Parameters.AddWithValue("@OrderStatus", OrderStatus);
+
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {

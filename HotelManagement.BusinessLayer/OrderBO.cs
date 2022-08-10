@@ -27,9 +27,13 @@ namespace HotelManagement.BusinessLayer
         {
             OrderDAO.DeleteOrder(OrderId);
         }
-        public void GetOrder(Guid OrderId)
+        public Order GetOrder(Guid OrderId)
         {
-            OrderDAO.GetOrder(OrderId);
+            return OrderDAO.GetOrder(OrderId);
+        }
+        public Order GetOrderbyStatus(string OrderStatus)
+        {
+            return OrderDAO.GetOrderbyStatus(OrderStatus);
         }
         public ICollection<Order> GetAllOrders()
         {

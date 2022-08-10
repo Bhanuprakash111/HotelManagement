@@ -27,9 +27,9 @@ namespace HotelManagement.BusinessLayer
         {
             CartItemDAO.DeleteItem(ItemId);
         }
-        public void GetItem(Guid ItemId)
+        public CartItem GetItem(Guid ItemId)
         {
-            CartItemDAO.GetItem(ItemId);
+            return CartItemDAO.GetItem(ItemId);
         }
 
         public ICollection<CartItem> GetItemsbyOrderId(Guid OrderId)
