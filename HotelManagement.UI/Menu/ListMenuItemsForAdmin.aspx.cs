@@ -52,5 +52,17 @@ namespace HotelManagement.UI.Menu
             Response.Redirect("ListMenuItemsForAdmin");
 
         }
+        protected void CreateButton_Click(Object sender, EventArgs e)
+        {
+            Entities.MenuItem menuItem=new Entities.MenuItem();
+            menuItem.ItemName = AddItemName.Text;
+            menuItem.Category = AddItemCategory.Text;
+            menuItem.Cost= AddItemCost.Text;
+            menuItem.Availability= AddItemAvailability.Text;
+            menuItem.Image=AddItemImage.Text;
+            menuItemBO.AddMenuItem(menuItem);
+            
+            Response.Redirect("ListMenuItemsForAdmin");
+        }
     }
 }

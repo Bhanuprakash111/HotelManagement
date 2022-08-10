@@ -12,11 +12,43 @@
             <asp:ListItem>MainCourse</asp:ListItem>
             <asp:ListItem>IceCream</asp:ListItem>
         </asp:DropDownList>
-        <div class="ml-3 lead btn btn-primary" style="cursor: pointer; color: dodgerblue" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight">
+
+        <asp:LinkButton class="ml-3 lead btn btn-primary" runat="server" Style="cursor: pointer; color: dodgerblue" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight" data-toggle="modal" data-target="#AddMenuItem">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
             </svg>
             <span class="text-light">Add Item</span>
+        </asp:LinkButton>
+    </div>
+    <div class="modal fade" id="AddMenuItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Add New MenuItem</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>Item Name</label>
+                    <asp:TextBox class="form-control mb-2" ID="AddItemName" runat="server" Type="string"></asp:TextBox>
+                    <label>Item Category</label>
+                    <asp:TextBox CssClass="form-control" ID="AddItemCategory" runat="server" Type="string"></asp:TextBox>
+                    <label>Item Cost</label>
+                    <asp:TextBox class="form-control " ID="AddItemCost" type="number" runat="server"></asp:TextBox>
+                    <label>Item Availability</label>
+                    <asp:DropDownList ID="AddItemAvailability" CssClass="custom-select mb-2" runat="server">
+                        <asp:ListItem Value="yes">Yes</asp:ListItem>
+                        <asp:ListItem Value="no">No</asp:ListItem>
+                    </asp:DropDownList>
+                    <label>Item Image</label>
+                    <asp:TextBox class="form-control" ID="AddItemImage" runat="server"></asp:TextBox>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <asp:Button ID="CreateItem" Class="btn btn-primary" runat="server" Text="Create new menuItem" onClick="CreateButton_Click" />
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,7 +79,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="CloseModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <asp:Button ID="SaveEditChanges" class="btn btn-primary" runat="server" Text="Save changes" OnClick="SaveEditChanges_Click"/>
+                    <asp:Button ID="SaveEditChanges" class="btn btn-primary" runat="server" Text="Save changes" OnClick="SaveEditChanges_Click" />
                 </div>
             </div>
         </div>
@@ -74,8 +106,8 @@
                                 </div>
                             </div>
                             <div class="d-flex justity-content-center ml-3">
-                                
-                                <asp:LinkButton class=" btn btn-primary"  ID="EditMenuItem" OnClick="EditButton_Click" runat="server"  CommandArgument='<%#DataBinder.Eval(Container,"DataItem.ItemName")%>'>
+
+                                <asp:LinkButton class=" btn btn-primary" ID="EditMenuItem" OnClick="EditButton_Click" runat="server" CommandArgument='<%#DataBinder.Eval(Container,"DataItem.ItemName")%>'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                         <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                                     </svg>

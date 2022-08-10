@@ -24,6 +24,60 @@ namespace HotelManagement.UI.Menu
         protected global::System.Web.UI.WebControls.DropDownList MenuDropDownAdmin;
 
         /// <summary>
+        /// AddItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AddItemName;
+
+        /// <summary>
+        /// AddItemCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AddItemCategory;
+
+        /// <summary>
+        /// AddItemCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AddItemCost;
+
+        /// <summary>
+        /// AddItemAvailability control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AddItemAvailability;
+
+        /// <summary>
+        /// AddItemImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AddItemImage;
+
+        /// <summary>
+        /// Create Item control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CreateItem;
+        
+        /// <summary>
         /// upModal control.
         /// </summary>
         /// <remarks>
