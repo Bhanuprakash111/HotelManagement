@@ -11,30 +11,34 @@ namespace HotelManagement.UI.Cart
     public partial class ListCartItems : System.Web.UI.Page
     {
         CartItemBO cb = new CartItemBO();
+        OrderBO ob = new OrderBO();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            
+            if (!IsPostBack)
             {
                 string CurrentLoggedInUser = Session["username"].ToString();
-                OrderBO ob = new OrderBO();
                 if (ob.AnyOrderStandBy(CurrentLoggedInUser))
                 {
                     Entities.Order order = ob.GetOrderbyStatus("Inprogress", CurrentLoggedInUser);
                     ListView1.DataSource = cb.GetItemsbyOrderId(order.OrderId);
                     ListView1.DataBind();
                     GrandTotalValue.Text = order.TotalCost;
+                    PlaceOrder1.Attributes.Add("Enabled","true");
+
                 }
                 else { 
                     ListView1.DataSource=null;
                     ListView1.DataBind();
+                    PlaceOrder1.Attributes.Add("disabled", "true");
                 }
             }
-
+            if(ListView1.DataKeys.Count == 0) PlaceOrder1.Attributes.Add("disabled", "true");
         }
         protected void DeleteButton_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
-            OrderBO ob = new OrderBO();
             Guid id = new Guid(btn.CommandArgument);
             
             Entities.CartItem item = cb.GetItem(id);
@@ -49,7 +53,6 @@ namespace HotelManagement.UI.Cart
         {
             TextBox tb = (TextBox)sender;
             HiddenField hf  =(HiddenField)tb.Parent.FindControl("HiddenItemId");
-            OrderBO ob = new OrderBO();
             Guid id = new Guid(hf.Value);
 
             Entities.CartItem item = cb.GetItem(id);
@@ -60,8 +63,15 @@ namespace HotelManagement.UI.Cart
             order.TotalCost = cb.GetTotalCost(item.OrderOrderId)+"";
             ob.EditOrder(order);
             GrandTotalValue.Text = order.TotalCost;
-             Response.Redirect("ListCartItems");
+            Response.Redirect("ListCartItems");
         }
-        
+
+        protected void PlaceOrder1_Click(object sender, EventArgs e)
+        {
+            Entities.Order order = ob.GetOrderbyStatus("Inprogress", Session["username"].ToString());
+            order.OrderStatus = "Placed";
+            ob.EditOrder(order);
+            Response.Redirect("../Orders/OrderHistory");
+        }
     }
 }

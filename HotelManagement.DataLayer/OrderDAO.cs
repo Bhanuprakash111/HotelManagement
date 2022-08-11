@@ -15,8 +15,8 @@ namespace HotelManagement.DataLayer
         public OrderDAO()
         {
             /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
-            //ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            //ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
            // ConnStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HotelManagement;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
@@ -148,6 +148,30 @@ namespace HotelManagement.DataLayer
             {
                 SqlCommand cmd = new SqlCommand("Select * from Orders where UserUserName=@UserName", con);
                 cmd.Parameters.AddWithValue("@UserName", UserName);
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        Order odr = new Order();
+                        odr.OrderId = (Guid)rdr["OrderId"];
+                        odr.TotalCost = rdr["TotalCost"].ToString();
+                        odr.Date = (DateTime)rdr["Date"];
+                        odr.OrderStatus = rdr["OrderStatus"].ToString();
+                        odr.UserUserName = rdr["UserUserName"].ToString();
+                        Orders.Add(odr);
+                    }
+                }
+                return Orders;
+            }
+        } 
+        public ICollection<Order> GetAllOrdersbyStatus(string Status)
+        {
+            List<Order> Orders = new List<Order>();
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Orders where OrderStatus=@Status", con);
+                cmd.Parameters.AddWithValue("@Status", Status);
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
                 {

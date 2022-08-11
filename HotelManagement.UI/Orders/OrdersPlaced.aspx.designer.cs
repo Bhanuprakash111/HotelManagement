@@ -7,29 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HotelManagement.UI
+namespace HotelManagement.UI.Orders
 {
 
 
-    public partial class Admin
+    public partial class OrdersPlaced
     {
 
         /// <summary>
-        /// AdminLogout control.
+        /// OrderListViewAdmin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton AdminLogout;
-
-        /// <summary>
-        /// AdminContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder AdminContent;
+        protected global::System.Web.UI.WebControls.ListView OrderListViewAdmin;
     }
 }

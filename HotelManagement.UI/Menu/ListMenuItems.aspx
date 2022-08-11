@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ListMenuItems.aspx.cs" Inherits="HotelManagement.UI.Menu.ListMenuItems" %>
 
 <asp:Content ID="Customer" ContentPlaceHolderID="CustomerContent" runat="server">
+    <div class="h4 my-3 ml-5 pl-2">Welcome to Food Mafia, <span class="font-italic text-info"><%=Session["username"] %></span></div>
     <div class="d-flex mt-3 offset-3">
         <span class="lead p-1">Select your Category : </span>
         <asp:DropDownList ID="MenuDropDown" CssClass="custom-select ml-4 w-25" runat="server" OnSelectedIndexChanged="MenuDropDown_SelectedIndexChanged" AutoPostBack="True">

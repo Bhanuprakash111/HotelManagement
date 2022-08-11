@@ -19,5 +19,9 @@ namespace HotelManagement.UI.Orders
 
         }
 
+        protected void OrderMoreInfo_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
