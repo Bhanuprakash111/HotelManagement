@@ -53,8 +53,11 @@
                                 </ItemTemplate>
                                 
                             </asp:ListView>
+                           
                         </ContentTemplate>
                     </asp:UpdatePanel>
+                    <div class="text-right mr-5 font-weight-bold">Grand Total :  <asp:Label ID="GrandTotal" runat="server" ></asp:Label></div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

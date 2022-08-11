@@ -27,8 +27,13 @@ namespace HotelManagement.UI.Orders
             CartItemBO cb = new CartItemBO();
             ModalListView.DataSource=cb.GetItemsbyOrderId(id);
             ModalListView.DataBind();
+
+            Entities.Order odr = ob.GetOrder(id);
+            GrandTotal.Text = odr.TotalCost;
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OrderInfoModal", "$('#OrderInfoModal').modal();", true);
             ModalUpdatePanel.Update();
+
         }
     }
 }
