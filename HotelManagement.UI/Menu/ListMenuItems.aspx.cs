@@ -10,9 +10,10 @@ namespace HotelManagement.UI.Menu
 {
     public partial class ListMenuItems : System.Web.UI.Page
     {
+        MenuItemBO menuItemBO = new MenuItemBO();
         protected void Page_Load(object sender, EventArgs e)
         {
-            MenuItemBO menuItemBO = new MenuItemBO();
+            
 
             CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDown.SelectedValue);
             CardRepeater.DataBind();
@@ -21,7 +22,7 @@ namespace HotelManagement.UI.Menu
 
         protected void MenuDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MenuItemBO menuItemBO = new MenuItemBO();
+            
 
             CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDown.SelectedValue);
             CardRepeater.DataBind();
@@ -38,6 +39,8 @@ namespace HotelManagement.UI.Menu
             ct.ItemId = Guid.NewGuid();
             ct.MenuItemItemName = addBtn.CommandArgument;
             ct.Quantity = "1";
+            ct.ItemCost = Convert.ToInt32(menuItemBO.GetMenuItem(ct.MenuItemItemName).Cost);
+            ct.ItemTotal = ct.ItemCost;
 
             if (orderBO.AnyOrderStandBy(CurrentLoggedInUser))
             {

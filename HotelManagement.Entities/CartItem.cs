@@ -18,8 +18,9 @@ namespace HotelManagement.Entities
         public System.Guid OrderOrderId { get; set; }
         public string MenuItemItemName { get; set; }
         public string Quantity { get; set; }
+        public int ItemCost { get; set; }
+        public int ItemTotal { get; set; }
     
         public virtual Order Order { get; set; }
-        public virtual MenuItem MenuItem { get; set; }
     }
 }

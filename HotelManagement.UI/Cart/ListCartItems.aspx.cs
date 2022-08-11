@@ -22,12 +22,14 @@ namespace HotelManagement.UI.Cart
                     Entities.Order order = ob.GetOrderbyStatus("Inprogress", CurrentLoggedInUser);
                     ListView1.DataSource = cb.GetItemsbyOrderId(order.OrderId);
                     ListView1.DataBind();
+                    GrandTotalValue.Text = order.TotalCost;
                 }
                 else { 
                     ListView1.DataSource=null;
                     ListView1.DataBind();
                 }
             }
+
         }
         protected void DeleteButton_Click(object sender, EventArgs e)
         {
@@ -41,11 +43,18 @@ namespace HotelManagement.UI.Cart
         {
             TextBox tb = (TextBox)sender;
             HiddenField hf  =(HiddenField)tb.Parent.FindControl("HiddenItemId");
+            OrderBO ob = new OrderBO();
             Guid id = new Guid(hf.Value);
 
             Entities.CartItem item = cb.GetItem(id);
             item.Quantity = tb.Text;
+            item.ItemTotal = (Convert.ToInt32(item.Quantity)) * (item.ItemCost);
             cb.EditItem(item);
+            Entities.Order order = ob.GetOrder(item.OrderOrderId);
+            order.TotalCost = cb.GetTotalCost(item.OrderOrderId)+"";
+            ob.EditOrder(order);
+            GrandTotalValue.Text = order.TotalCost;
+             Response.Redirect("ListCartItems");
         }
         
     }

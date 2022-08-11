@@ -9,11 +9,17 @@
                     <tr>
                         <th>Item Name           
                         </th>
+
+                        <th>Cost
+                        </th>
                         <th>Quantity
+                        </th>
+                        <th>Total
                         </th>
                         <th>Actions
                         </th>
                     </tr>
+
                 </thead>
                 <tr id="itemPlaceHolder" runat="server">
 
@@ -25,11 +31,19 @@
             <tr>
                 <td><%#DataBinder.Eval(Container,"DataItem.MenuItemItemName") %>           
                 </td>
+                <td>
+                    <asp:Label ID="ItemCost" runat="server" Text='<%#DataBinder.Eval(Container,"DataItem.ItemCost")%>'></asp:Label>
+                </td>
                 <asp:HiddenField ID="HiddenItemId" runat="server" Value='<%#DataBinder.Eval(Container,"DataItem.ItemId")%>'/>
+                
                 <td>
                     <asp:TextBox ID="Quantity" runat="server" type="number" Text='<%#DataBinder.Eval(Container,"DataItem.Quantity") %> ' AutoPostBack="True" OnTextChanged="Quantity_TextChanged">
 
                     </asp:TextBox>
+                </td>
+                
+                <td>
+                    <asp:Label ID="Total" runat="server" Text='<%#DataBinder.Eval(Container,"DataItem.ItemTotal")%>'></asp:Label>
                 </td>
                 <td>
                     <asp:LinkButton ID="DeleteCartItem" class=" ml-2 btn btn-danger" runat="server" CommandArgument='<%#DataBinder.Eval(Container,"DataItem.ItemId")%>' OnClick="DeleteButton_Click">
@@ -39,11 +53,18 @@
                                      
                     </asp:LinkButton>
                 </td>
+               
             </tr>
+                         
+
         </ItemTemplate>
         <EmptyDataTemplate>
             <div class="mt-5 h2 text-center">What are you looking At?</div>
             <div class="h3 text-center">Your Cart is Empty</div>
         </EmptyDataTemplate>
+
     </asp:ListView>
+   <asp:Label ID="GrandTotal" runat="server" Text="GrandTotal : " CssClass="offset-8"></asp:Label> 
+   <asp:Label ID="GrandTotalValue" runat="server" ></asp:Label> 
+
 </asp:Content>

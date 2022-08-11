@@ -14,19 +14,10 @@ namespace HotelManagement.Entities
     
     public partial class MenuItem
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MenuItem()
-        {
-            this.CartItems = new HashSet<CartItem>();
-        }
-    
         public string ItemName { get; set; }
         public string Cost { get; set; }
         public string Category { get; set; }
         public string Availability { get; set; }
         public string Image { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

@@ -31,7 +31,10 @@ namespace HotelManagement.BusinessLayer
         {
             return CartItemDAO.GetItem(ItemId);
         }
-
+        public Int32 GetTotalCost(Guid OrderId)
+        {
+            return CartItemDAO.GetTotalCost(OrderId);
+        }
         public bool isInCart(string ItemName, Guid OrderId) {
             return CartItemDAO.isInCart(ItemName,OrderId);
         }

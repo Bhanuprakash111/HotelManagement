@@ -18,10 +18,6 @@
       <End Role="Order" EntitySet="Orders" />
       <End Role="CartItem" EntitySet="CartItems" />
     </AssociationSet>
-    <AssociationSet Name="MenuItemCartItem" Association="Model1.Store.MenuItemCartItem">
-      <End Role="MenuItem" EntitySet="MenuItems" />
-      <End Role="CartItem" EntitySet="CartItems" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Users">
     <Key>
@@ -61,6 +57,8 @@
     <Property Name="OrderOrderId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="MenuItemItemName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ItemCost" Type="int" Nullable="false" />
+    <Property Name="ItemTotal" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserOrder">
     <End Role="User" Type="Model1.Store.Users" Multiplicity="1" />
@@ -86,18 +84,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="MenuItemCartItem">
-    <End Role="MenuItem" Type="Model1.Store.MenuItems" Multiplicity="1" />
-    <End Role="CartItem" Type="Model1.Store.CartItems" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MenuItem">
-        <PropertyRef Name="ItemName" />
-      </Principal>
-      <Dependent Role="CartItem">
-        <PropertyRef Name="MenuItemItemName" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -113,10 +99,6 @@
           <EntitySet Name="CartItems" EntityType="Model1.CartItem" />
           <AssociationSet Name="OrderCartItem" Association="Model1.OrderCartItem">
             <End Role="Order" EntitySet="Orders" />
-            <End Role="CartItem" EntitySet="CartItems" />
-          </AssociationSet>
-          <AssociationSet Name="MenuItemCartItem" Association="Model1.MenuItemCartItem">
-            <End Role="MenuItem" EntitySet="MenuItems" />
             <End Role="CartItem" EntitySet="CartItems" />
           </AssociationSet>
         </EntityContainer>
@@ -152,7 +134,6 @@
           <Property Name="Category" Type="String" Nullable="false" />
           <Property Name="Availability" Type="String" Nullable="false" />
           <Property Name="Image" Type="String" Nullable="false" />
-          <NavigationProperty Name="CartItems" Relationship="Model1.MenuItemCartItem" FromRole="MenuItem" ToRole="CartItem" />
         </EntityType>
         <Association Name="UserOrder">
           <End Type="Model1.User" Role="User" Multiplicity="1" />
@@ -175,7 +156,8 @@
           <Property Name="MenuItemItemName" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Quantity" Type="String" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.OrderCartItem" FromRole="CartItem" ToRole="Order" />
-          <NavigationProperty Name="MenuItem" Relationship="Model1.MenuItemCartItem" FromRole="CartItem" ToRole="MenuItem" />
+          <Property Name="ItemCost" Type="Int32" Nullable="false" />
+          <Property Name="ItemTotal" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="OrderCartItem">
           <End Type="Model1.Order" Role="Order" Multiplicity="1" />
@@ -186,18 +168,6 @@
             </Principal>
             <Dependent Role="CartItem">
               <PropertyRef Name="OrderOrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="MenuItemCartItem">
-          <End Type="Model1.MenuItem" Role="MenuItem" Multiplicity="1" />
-          <End Type="Model1.CartItem" Role="CartItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MenuItem">
-              <PropertyRef Name="ItemName" />
-            </Principal>
-            <Dependent Role="CartItem">
-              <PropertyRef Name="MenuItemItemName" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -247,6 +217,8 @@
           <ScalarProperty Name="OrderOrderId" ColumnName="OrderOrderId" />
           <ScalarProperty Name="MenuItemItemName" ColumnName="MenuItemItemName" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
+          <ScalarProperty Name="ItemTotal" ColumnName="ItemTotal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

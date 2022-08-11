@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/06/2022 22:22:26
--- Generated from EDMX file: C:\Users\mbhan\source\repos\HotelManagement\HotelManagement.Entities\Model1.edmx
+-- Date Created: 08/10/2022 23:53:57
+-- Generated from EDMX file: D:\HM\HotelManagement.Entities\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -20,6 +20,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserOrder]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_UserOrder];
 GO
+IF OBJECT_ID(N'[dbo].[FK_OrderCartItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CartItems] DROP CONSTRAINT [FK_OrderCartItem];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -33,6 +36,9 @@ IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[MenuItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MenuItems];
+GO
+IF OBJECT_ID(N'[dbo].[CartItems]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CartItems];
 GO
 
 -- --------------------------------------------------
@@ -74,7 +80,9 @@ CREATE TABLE [dbo].[CartItems] (
     [ItemId] uniqueidentifier  NOT NULL,
     [OrderOrderId] uniqueidentifier  NOT NULL,
     [MenuItemItemName] nvarchar(50)  NOT NULL,
-    [Quantity] nvarchar(max)  NOT NULL
+    [Quantity] nvarchar(max)  NOT NULL,
+    [ItemCost] int  NOT NULL,
+    [ItemTotal] int  NOT NULL
 );
 GO
 
@@ -138,21 +146,6 @@ GO
 CREATE INDEX [IX_FK_OrderCartItem]
 ON [dbo].[CartItems]
     ([OrderOrderId]);
-GO
-
--- Creating foreign key on [MenuItemItemName] in table 'CartItems'
-ALTER TABLE [dbo].[CartItems]
-ADD CONSTRAINT [FK_MenuItemCartItem]
-    FOREIGN KEY ([MenuItemItemName])
-    REFERENCES [dbo].[MenuItems]
-        ([ItemName])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_MenuItemCartItem'
-CREATE INDEX [IX_FK_MenuItemCartItem]
-ON [dbo].[CartItems]
-    ([MenuItemItemName]);
 GO
 
 -- --------------------------------------------------
