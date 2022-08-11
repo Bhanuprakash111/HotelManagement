@@ -34,7 +34,13 @@ namespace HotelManagement.UI.Cart
         protected void DeleteButton_Click(object sender, EventArgs e)
         {
             LinkButton btn = (LinkButton)sender;
+            OrderBO ob = new OrderBO();
             Guid id = new Guid(btn.CommandArgument);
+            
+            Entities.CartItem item = cb.GetItem(id);
+            Entities.Order order = ob.GetOrder(item.OrderOrderId);
+            order.TotalCost = (Convert.ToInt32(order.TotalCost) - item.ItemTotal).ToString();
+            ob.EditOrder(order);
             cb.DeleteItem(id);
             Response.Redirect("ListCartItems");
         }

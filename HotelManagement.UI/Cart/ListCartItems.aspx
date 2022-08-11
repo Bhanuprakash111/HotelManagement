@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.Master" AutoEventWireup="true" CodeBehind="ListCartItems.aspx.cs" Inherits="HotelManagement.UI.Cart.ListCartItems" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="CustomerContent" runat="server">
-
+    <div class="container">
     <asp:ListView ID="ListView1" runat="server">
         <LayoutTemplate>
             <table class="table" id="itemPlaceHolderContainer" runat="server">
@@ -66,5 +66,5 @@
     </asp:ListView>
    <asp:Label ID="GrandTotal" runat="server" Text="GrandTotal : " CssClass="offset-8"></asp:Label> 
    <asp:Label ID="GrandTotalValue" runat="server" ></asp:Label> 
-
+        </div>
 </asp:Content>

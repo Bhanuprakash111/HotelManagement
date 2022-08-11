@@ -46,13 +46,20 @@ namespace HotelManagement.UI.Menu
             {
                 Entities.Order order = orderBO.GetOrderbyStatus("Inprogress",CurrentLoggedInUser);
                 ct.OrderOrderId = order.OrderId;
+                order.TotalCost =( Convert.ToInt32(order.TotalCost) + ct.ItemTotal).ToString();
+                if (!cartItemBO.isInCart(ct.MenuItemItemName, ct.OrderOrderId))
+                {
+                    orderBO.EditOrder(order);
+                }
+                    
+                
             }
             else {
                 Entities.Order order = new Entities.Order();
                 order.OrderId = Guid.NewGuid();
                 order.UserUserName = CurrentLoggedInUser;
                 order.Date = DateTime.Now;
-                order.TotalCost = "";
+                order.TotalCost = ct.ItemTotal.ToString();
                 order.OrderStatus = "Inprogress";
                 orderBO.AddOrder(order);
                 ct.OrderOrderId=order.OrderId;
@@ -60,6 +67,7 @@ namespace HotelManagement.UI.Menu
             
             if (!cartItemBO.isInCart(ct.MenuItemItemName, ct.OrderOrderId))
             {
+                
                 cartItemBO.AddItem(ct);
             }
             else {
