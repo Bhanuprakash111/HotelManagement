@@ -11,7 +11,9 @@
             <asp:ListItem>Starters</asp:ListItem>
             <asp:ListItem>Desserts</asp:ListItem>
             <asp:ListItem>MainCourse</asp:ListItem>
-            <asp:ListItem>IceCream</asp:ListItem>
+            <asp:ListItem>Snacks</asp:ListItem>
+            <asp:ListItem>Drinks</asp:ListItem>
+            <asp:ListItem>Soups</asp:ListItem>
         </asp:DropDownList>
 
         <asp:LinkButton class="ml-3 lead btn btn-primary" runat="server" Style="cursor: pointer; color: dodgerblue" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight" data-toggle="modal" data-target="#AddMenuItem">
@@ -34,7 +36,15 @@
                     <label>Item Name</label>
                     <asp:TextBox class="form-control mb-2" ID="AddItemName" runat="server" Type="string"></asp:TextBox>
                     <label>Item Category</label>
-                    <asp:TextBox CssClass="form-control" ID="AddItemCategory" runat="server" Type="string"></asp:TextBox>
+                    <asp:DropDownList ID="AddItemCategory" CssClass="custom-select " runat="server" >
+                        <asp:ListItem>Breakfast</asp:ListItem>
+                        <asp:ListItem>Starters</asp:ListItem>
+                        <asp:ListItem>Desserts</asp:ListItem>
+                        <asp:ListItem>MainCourse</asp:ListItem>
+                        <asp:ListItem>Snacks</asp:ListItem>
+                        <asp:ListItem>Drinks</asp:ListItem>
+                        <asp:ListItem>Soups</asp:ListItem>
+                    </asp:DropDownList>
                     <label>Item Cost</label>
                     <asp:TextBox class="form-control " ID="AddItemCost" type="number" runat="server"></asp:TextBox>
                     <label>Item Availability</label>
@@ -47,7 +57,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <asp:Button ID="CreateItem" Class="btn btn-primary" runat="server" Text="Create new menuItem" onClick="CreateButton_Click" />
+                    <asp:Button ID="CreateItem" Class="btn btn-primary" runat="server" Text="Create new menuItem" OnClick="CreateButton_Click" />
                 </div>
             </div>
         </div>

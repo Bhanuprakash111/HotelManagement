@@ -15,6 +15,24 @@ namespace HotelManagement.UI.Orders
     {
 
         /// <summary>
+        /// ModalUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel ModalUpdatePanel;
+
+        /// <summary>
+        /// ModalListView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ModalListView;
+
+        /// <summary>
         /// OrderListView control.
         /// </summary>
         /// <remarks>

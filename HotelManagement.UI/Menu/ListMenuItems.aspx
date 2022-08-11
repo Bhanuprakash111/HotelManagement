@@ -9,7 +9,9 @@
             <asp:ListItem>Starters</asp:ListItem>
             <asp:ListItem>Desserts</asp:ListItem>
             <asp:ListItem>MainCourse</asp:ListItem>
-            <asp:ListItem>IceCream</asp:ListItem>
+            <asp:ListItem>Snacks</asp:ListItem>
+            <asp:ListItem>Drinks</asp:ListItem>
+            <asp:ListItem>Soups</asp:ListItem>
         </asp:DropDownList>
     </div>
     <asp:Label ID="WarningLabel" runat="server" ForeColor="Red" class="offset-5"></asp:Label>

@@ -21,7 +21,14 @@ namespace HotelManagement.UI.Orders
 
         protected void OrderMoreInfo_Click(object sender, EventArgs e)
         {
-            
+
+            LinkButton btn = (LinkButton)sender;
+            Guid id = new Guid(btn.CommandArgument);
+            CartItemBO cb = new CartItemBO();
+            ModalListView.DataSource=cb.GetItemsbyOrderId(id);
+            ModalListView.DataBind();
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OrderInfoModal", "$('#OrderInfoModal').modal();", true);
+            ModalUpdatePanel.Update();
         }
     }
 }

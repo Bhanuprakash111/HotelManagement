@@ -39,7 +39,7 @@ namespace HotelManagement.UI.Menu
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AddItemCategory;
+        protected global::System.Web.UI.WebControls.DropDownList AddItemCategory;
 
         /// <summary>
         /// AddItemCost control.
@@ -69,14 +69,14 @@ namespace HotelManagement.UI.Menu
         protected global::System.Web.UI.WebControls.TextBox AddItemImage;
 
         /// <summary>
-        /// Create Item control.
+        /// CreateItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CreateItem;
-        
+
         /// <summary>
         /// upModal control.
         /// </summary>
