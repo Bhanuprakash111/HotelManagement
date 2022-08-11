@@ -15,7 +15,7 @@ namespace HotelManagement.UI.Cart
         {
             if(!IsPostBack)
             {
-                string CurrentLoggedInUser = "Bhanu";
+                string CurrentLoggedInUser = Session["username"].ToString();
                 OrderBO ob = new OrderBO();
                 if (ob.AnyOrderStandBy(CurrentLoggedInUser))
                 {

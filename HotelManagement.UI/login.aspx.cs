@@ -22,6 +22,10 @@ namespace HotelManagement.UI
             if (userBO.IsUserNameAvailable(TextBox1.Text))
             {
                 var user = userBO.GetUser(TextBox1.Text);
+                Session["username"] = user.UserName;
+                Session["userrole"] = user.UserRole;
+                Session.Timeout = 60;
+
                 if (TextBox2.Text.Equals(user.Password))
                 {
                     Label1.Text = "";

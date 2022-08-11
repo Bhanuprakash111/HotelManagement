@@ -42,5 +42,9 @@ namespace HotelManagement.BusinessLayer
         {
             return OrderDAO.GetAllOrders();
         }
+        public ICollection<Order> GetAllOrdersbyUserName(string Username)
+        {
+            return OrderDAO.GetAllOrdersbyUserName(Username);
+        }
     }
 }

@@ -13,5 +13,11 @@ namespace HotelManagement.UI
         {
 
         }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("../login.aspx");
+        }
     }
 }

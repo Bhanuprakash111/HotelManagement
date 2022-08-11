@@ -141,6 +141,30 @@ namespace HotelManagement.DataLayer
                 return Orders;
             }
         }
+        public ICollection<Order> GetAllOrdersbyUserName(string UserName)
+        {
+            List<Order> Orders = new List<Order>();
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from Orders where UserUserName=@UserName", con);
+                cmd.Parameters.AddWithValue("@UserName", UserName);
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        Order odr = new Order();
+                        odr.OrderId = (Guid)rdr["OrderId"];
+                        odr.TotalCost = rdr["TotalCost"].ToString();
+                        odr.Date = (DateTime)rdr["Date"];
+                        odr.OrderStatus = rdr["OrderStatus"].ToString();
+                        odr.UserUserName = rdr["UserUserName"].ToString();
+                        Orders.Add(odr);
+                    }
+                }
+                return Orders;
+            }
+        }
 
         /*public static void Main(String [] args) { 
              OrderDAO orderdao = new OrderDAO();

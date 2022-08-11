@@ -30,7 +30,7 @@ namespace HotelManagement.UI.Menu
 
         protected void AddToCart_Click(object sender, EventArgs e)
         {
-            string CurrentLoggedInUser = "Bhanu";
+            string CurrentLoggedInUser = Session["username"].ToString();
             LinkButton addBtn = (LinkButton)sender;
             OrderBO orderBO = new OrderBO();
             CartItemBO cartItemBO = new CartItemBO();
