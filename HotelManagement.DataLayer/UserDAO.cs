@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
 using HotelManagement.Entities;
+using dotenv.net;
 
 namespace HotelManagement.DataLayer
 {
     public class UserDAO
     {
-        private String ConnStr;
-        public UserDAO() {
-            /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            //ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
-            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
-            //ConnStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HotelManagement;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string ConnStr;
+        public UserDAO()
+        {
+            IDictionary<string, string> envVars = DotEnv.Fluent()
+            .WithExceptions().WithEnvFiles().WithTrimValues().WithOverwriteExistingVars().WithProbeForEnv(probeLevelsToSearch: 6).Read();
+            ConnStr = envVars["CONNECTION_STRING"];      
+    
         }
 
         public void AddUser(User usr) {
@@ -111,3 +113,4 @@ namespace HotelManagement.DataLayer
         }
     }
 }
+

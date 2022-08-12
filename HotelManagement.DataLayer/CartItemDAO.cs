@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using HotelManagement.Entities;
-
+using dotenv.net;
 
 namespace HotelManagement.DataLayer
 {
     //LAPTOP-N11IRFB2\SQLEXPRESS
     public class CartItemDAO
     {
-        private String ConnStr;
+        public static string ConnStr;
         public CartItemDAO()
         {
-            /*ConnStr = ConfigurationManager.ConnectionStrings["HotelMgmtConn"].ConnectionString;*/
-            //ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
-           //ConnStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HotelManagement;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-           ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            IDictionary<string, string> envVars = DotEnv.Fluent()
+            .WithExceptions().WithEnvFiles().WithTrimValues().WithOverwriteExistingVars().WithProbeForEnv(probeLevelsToSearch: 6).Read();
+            ConnStr = envVars["CONNECTION_STRING"];
+
         }
         public void AddItem(CartItem itm)
         {
