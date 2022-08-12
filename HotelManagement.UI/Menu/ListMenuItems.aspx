@@ -21,7 +21,7 @@
                     <div class="card mb-3 mx-2 col-4 col-md-6 col-sm-12 p-0" style="max-width: 400px;">
                         <div class="row no-gutters">
                             <div class="col-6 img-fluid img">
-                                <img src="https://picsum.photos/200" alt="FoodImage">
+                                <asp:Image id="ClientImage" CssClass="rounded" runat="server" alt="FoodImage" />
                             </div>
                             <div class="col-6" >
                                 <div class="card-body">

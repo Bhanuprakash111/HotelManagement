@@ -112,8 +112,42 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\blueberry.jpg" />
+    <Content Include="Content\images\butterscotch.jpg" />
+    <Content Include="Content\images\chicken_biryani.jpg" />
+    <Content Include="Content\images\chicken_dum_biryani.jpg" />
+    <Content Include="Content\images\chicken_soup.jpg" />
+    <Content Include="Content\images\chilly_chicken.jpg" />
+    <Content Include="Content\images\chips.jpg" />
+    <Content Include="Content\images\choclate_icecream.jpg" />
+    <Content Include="Content\images\coca_cola.jpg" />
+    <Content Include="Content\images\death_by_choclate.jpg" />
+    <Content Include="Content\images\dosa.jpg" />
+    <Content Include="Content\images\faluda.jpg" />
+    <Content Include="Content\images\fanta.jpg" />
+    <Content Include="Content\images\fishfry.jpg" />
+    <Content Include="Content\images\french_fries.jpg" />
+    <Content Include="Content\images\idli_sambar.jpg" />
+    <Content Include="Content\images\idli.jpg" />
     <Content Include="Content\images\Login.jpg" />
+    <Content Include="Content\images\maggie.jpg" />
+    <Content Include="Content\images\manchuria.jpg" />
+    <Content Include="Content\images\mojito.jpg" />
+    <Content Include="Content\images\mutton_soup.jpg" />
+    <Content Include="Content\images\mutton_dum_biriyani.jpg" />
+    <Content Include="Content\images\panneer_tikka.jpg" />
+    <Content Include="Content\images\panner_biryani.jpg" />
+    <Content Include="Content\images\pepsi.jpg" />
+    <Content Include="Content\images\poori.jpg" />
+    <Content Include="Content\images\prawns_biryani.jpg" />
+    <Content Include="Content\images\prawns.jpg" />
+    <Content Include="Content\images\samosa.jpg" />
     <Content Include="Content\images\Signup.jpg" />
+    <Content Include="Content\images\sushi.jpg" />
+    <Content Include="Content\images\tandoori.jpg" />
+    <Content Include="Content\images\tomato soup.jpg" />
+    <Content Include="Content\images\vada.jpg" />
+    <Content Include="Content\images\vanilla.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -247,6 +281,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="signup.aspx" />
+    <Content Include="UserActions\UserProfile.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -321,6 +356,13 @@
     <Compile Include="signup.aspx.designer.cs">
       <DependentUpon>signup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserActions\UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserActions\UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -331,7 +373,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="User\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

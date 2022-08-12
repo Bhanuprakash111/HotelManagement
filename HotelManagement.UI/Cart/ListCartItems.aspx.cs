@@ -54,16 +54,20 @@ namespace HotelManagement.UI.Cart
             TextBox tb = (TextBox)sender;
             HiddenField hf  =(HiddenField)tb.Parent.FindControl("HiddenItemId");
             Guid id = new Guid(hf.Value);
-
-            Entities.CartItem item = cb.GetItem(id);
-            item.Quantity = tb.Text;
-            item.ItemTotal = (Convert.ToInt32(item.Quantity)) * (item.ItemCost);
-            cb.EditItem(item);
-            Entities.Order order = ob.GetOrder(item.OrderOrderId);
-            order.TotalCost = cb.GetTotalCost(item.OrderOrderId)+"";
-            ob.EditOrder(order);
-            GrandTotalValue.Text = order.TotalCost;
-            Response.Redirect("ListCartItems");
+            if(tb.Text.Equals("") || tb.Text.Equals("0") || tb.Text.StartsWith("-")){
+                CartItemWarning.Text = "Quantity cannot be less than or equal to zero (0)";
+                PlaceOrder1.Attributes.Add("disabled", "true");
+            }
+            else {
+                Entities.CartItem item = cb.GetItem(id);
+                item.Quantity = tb.Text;
+                item.ItemTotal = (Convert.ToInt32(item.Quantity)) * (item.ItemCost);
+                cb.EditItem(item);
+                Entities.Order order = ob.GetOrder(item.OrderOrderId);
+                order.TotalCost = cb.GetTotalCost(item.OrderOrderId) + "";
+                ob.EditOrder(order);
+                GrandTotalValue.Text = order.TotalCost;
+                Response.Redirect("ListCartItems"); }
         }
 
         protected void PlaceOrder1_Click(object sender, EventArgs e)

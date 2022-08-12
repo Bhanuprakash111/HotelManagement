@@ -48,8 +48,15 @@ namespace HotelManagement.UI.Menu
             menuItem.Cost = EditItemCost.Text;
             menuItem.Availability = EditItemAvailability.Text;
             menuItem.Image = EditItemImage.Text;
-            menuItemBO.EditMenuItem(menuItem);
-            Response.Redirect("ListMenuItemsForAdmin");
+            if (menuItem.Cost.StartsWith("-") || menuItem.Cost.Equals("0") || menuItem.Cost.Equals(""))
+            {
+                AddWarning.Text = "Cost Cannot be less than or equal to zero(0)";
+            }
+            else
+            {
+                menuItemBO.EditMenuItem(menuItem);
+                Response.Redirect("ListMenuItemsForAdmin");
+            }
 
         }
         protected void CreateButton_Click(Object sender, EventArgs e)
@@ -60,16 +67,32 @@ namespace HotelManagement.UI.Menu
             menuItem.Cost= AddItemCost.Text;
             menuItem.Availability= AddItemAvailability.Text;
             menuItem.Image=AddItemImage.Text;
-            if (menuItemBO.isItemAvailable(menuItem.ItemName)) {
-                AddWarning.Text = "Item is already in the Menu"; 
-                
+            if (menuItemBO.isItemAvailable(menuItem.ItemName))
+            {
+                AddWarning.Text = "Item is already in the Menu";
+
             }
-            else {
+            else if (menuItem.Cost.StartsWith("-") || menuItem.Cost.Equals("0") || menuItem.Cost.Equals(""))
+            {
+                AddWarning.Text = "Cost Cannot be less than or equal to zero(0)";
+            }
+            else if (menuItem.ItemName.Equals("")) { 
+                AddWarning.Text = "Item Name Cannot be empty";
+            }
+            else
+            {
                 menuItemBO.AddMenuItem(menuItem);
                 Response.Redirect("ListMenuItemsForAdmin");
             }
            
 
+        }
+
+        protected void CardRepeaterAdmin_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Entities.MenuItem item = (Entities.MenuItem)e.Item.DataItem;
+            Image btn = (Image)e.Item.FindControl("AdminImage");
+            btn.ImageUrl = "~/Content/images/"+item.Image+".jpg";
         }
     }
 }

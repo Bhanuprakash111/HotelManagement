@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CustomerContent" runat="server">
     <div class="container">
         <div class="h4 mt-3 mb-3">Your Food Cart :</div>
+        <asp:Label ID="CartItemWarning" ForeColor="Red" runat="server"></asp:Label>
         <asp:ListView ID="ListView1" runat="server">
             <LayoutTemplate>
                 <table class="table" id="itemPlaceHolderContainer" runat="server">

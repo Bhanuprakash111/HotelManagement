@@ -80,6 +80,8 @@ namespace HotelManagement.UI.Menu
                 LinkButton btn = (LinkButton)e.Item.FindControl("AddToCart");
                 btn.Attributes.Add("disabled", "true");
             };
+            Image btn1 = (Image)e.Item.FindControl("ClientImage");
+            btn1.ImageUrl = "~/Content/images/" + item.Image + ".jpg";
         }
     }
 }

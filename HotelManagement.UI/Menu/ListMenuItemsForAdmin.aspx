@@ -36,7 +36,7 @@
                     <label>Item Name</label>
                     <asp:TextBox class="form-control mb-2" ID="AddItemName" runat="server" Type="string"></asp:TextBox>
                     <label>Item Category</label>
-                    <asp:DropDownList ID="AddItemCategory" CssClass="custom-select " runat="server" >
+                    <asp:DropDownList ID="AddItemCategory" CssClass="custom-select " runat="server">
                         <asp:ListItem>Breakfast</asp:ListItem>
                         <asp:ListItem>Starters</asp:ListItem>
                         <asp:ListItem>Desserts</asp:ListItem>
@@ -53,7 +53,39 @@
                         <asp:ListItem Value="no">No</asp:ListItem>
                     </asp:DropDownList>
                     <label>Item Image</label>
-                    <asp:TextBox class="form-control" ID="AddItemImage" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="AddItemImage" CssClass="custom-select " runat="server">
+                        <asp:ListItem Value="blueberry">Blueberry</asp:ListItem>
+                        <asp:ListItem Value="butterscotch">Butterscotch</asp:ListItem>
+                        <asp:ListItem Value="chicken_biryani">Chicken Biryani</asp:ListItem>
+                        <asp:ListItem Value="chicken_dum_biryani">Chicken Dum Biryani</asp:ListItem>
+                        <asp:ListItem Value="chicken_soup">Chicken Soup</asp:ListItem>
+                        <asp:ListItem Value="chilly_chicken">Chilly Chicken</asp:ListItem>
+                        <asp:ListItem Value="chips">Chips</asp:ListItem>
+                        <asp:ListItem Value="chocolate_icecream">Chocolate Icecream</asp:ListItem>
+                        <asp:ListItem Value="death_by_choclate">Death By Chocolate</asp:ListItem>
+                        <asp:ListItem Value="dosa">Dosa</asp:ListItem>
+                        <asp:ListItem Value="faluda">Faluda</asp:ListItem>
+                        <asp:ListItem Value="fanta">Fanta</asp:ListItem>
+                        <asp:ListItem Value="fishfry">Fishfry</asp:ListItem>
+                        <asp:ListItem Value="french_fries">French Fries</asp:ListItem>
+                        <asp:ListItem Value="idli">Idli</asp:ListItem>
+                        <asp:ListItem Value="idli_sambar">Idly Sambar</asp:ListItem>
+                        <asp:ListItem Value="maggie">Maggie</asp:ListItem>
+                        <asp:ListItem Value="manchuria">Manchuria</asp:ListItem>
+                        <asp:ListItem Value="mojito">Mojito</asp:ListItem>
+                        <asp:ListItem Value="mutton_dum_biriyani">Mutton Dum Biriyani</asp:ListItem>
+                        <asp:ListItem Value="mutton_soup">Mutton Soup</asp:ListItem>
+                        <asp:ListItem Value="panneer_tikka">Panner Tikka</asp:ListItem>
+                        <asp:ListItem Value="panner_biryani">Panner Biryani</asp:ListItem>
+                        <asp:ListItem Value="pepsi">Pepsi</asp:ListItem>
+                        <asp:ListItem Value="poori">Poori</asp:ListItem>
+                        <asp:ListItem Value="prawns_biryani">Prawns Biryani</asp:ListItem>
+                        <asp:ListItem Value="samosa">Samosa</asp:ListItem>
+                        <asp:ListItem Value="sushi">Sushi</asp:ListItem>
+                        <asp:ListItem Value="tandoori">Tandoori</asp:ListItem>
+                        <asp:ListItem Value="vada">Vada</asp:ListItem>
+                        <asp:ListItem Value="vanilla">Vanilla</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -84,7 +116,39 @@
                                 <asp:ListItem Value="no">No</asp:ListItem>
                             </asp:DropDownList>
                             <label>Item Image</label>
-                            <asp:TextBox class="form-control" ID="EditItemImage" runat="server"></asp:TextBox>
+                            <asp:DropDownList ID="EditItemImage" CssClass="custom-select " runat="server">
+                                <asp:ListItem Value="blueberry">Blueberry</asp:ListItem>
+                                <asp:ListItem Value="butterscotch">Butterscotch</asp:ListItem>
+                                <asp:ListItem Value="chicken_biryani">Chicken Biryani</asp:ListItem>
+                                <asp:ListItem Value="chicken_dum_biryani">Chicken Dum Biryani</asp:ListItem>
+                                <asp:ListItem Value="chicken_soup">Chicken Soup</asp:ListItem>
+                                <asp:ListItem Value="chilly_chicken">Chilly Chicken</asp:ListItem>
+                                <asp:ListItem Value="chips">Chips</asp:ListItem>
+                                <asp:ListItem Value="chocolate_icecream">Chocolate Icecream</asp:ListItem>
+                                <asp:ListItem Value="death_by_choclate">Death By Chocolate</asp:ListItem>
+                                <asp:ListItem Value="dosa">Dosa</asp:ListItem>
+                                <asp:ListItem Value="faluda">Faluda</asp:ListItem>
+                                <asp:ListItem Value="fanta">Fanta</asp:ListItem>
+                                <asp:ListItem Value="fishfry">Fishfry</asp:ListItem>
+                                <asp:ListItem Value="french_fries">French Fries</asp:ListItem>
+                                <asp:ListItem Value="idli">Idli</asp:ListItem>
+                                <asp:ListItem Value="idli_sambar">Idly Sambar</asp:ListItem>
+                                <asp:ListItem Value="maggie">Maggie</asp:ListItem>
+                                <asp:ListItem Value="manchuria">Manchuria</asp:ListItem>
+                                <asp:ListItem Value="mojito">Mojito</asp:ListItem>
+                                <asp:ListItem Value="mutton_dum_biriyani">Mutton Dum Biriyani</asp:ListItem>
+                                <asp:ListItem Value="mutton_soup">Mutton Soup</asp:ListItem>
+                                <asp:ListItem Value="panneer_tikka">Panner Tikka</asp:ListItem>
+                                <asp:ListItem Value="panner_biryani">Panner Biryani</asp:ListItem>
+                                <asp:ListItem Value="pepsi">Pepsi</asp:ListItem>
+                                <asp:ListItem Value="poori">Poori</asp:ListItem>
+                                <asp:ListItem Value="prawns_biryani">Prawns Biryani</asp:ListItem>
+                                <asp:ListItem Value="samosa">Samosa</asp:ListItem>
+                                <asp:ListItem Value="sushi">Sushi</asp:ListItem>
+                                <asp:ListItem Value="tandoori">Tandoori</asp:ListItem>
+                                <asp:ListItem Value="vada">Vada</asp:ListItem>
+                                <asp:ListItem Value="vanilla">Vanilla</asp:ListItem>
+                            </asp:DropDownList>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -97,12 +161,12 @@
     </div>
 
     <div class="row mt-3 ml-5">
-        <asp:Repeater ID="CardRepeaterAdmin" runat="server">
+        <asp:Repeater ID="CardRepeaterAdmin" runat="server" OnItemDataBound="CardRepeaterAdmin_ItemDataBound">
             <ItemTemplate>
                 <div class="card mb-3 mx-2 col-4 col-md-6 col-sm-12 p-0" style="max-width: 400px;">
                     <div class="row no-gutters">
                         <div class="col-6 img-fluid img">
-                            <img src="https://picsum.photos/200" alt="FoodImage">
+                            <asp:Image id="AdminImage" CssClass="rounded" runat="server" />
                         </div>
                         <div class="col-6">
                             <div class="card-body">
