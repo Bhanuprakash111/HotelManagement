@@ -13,8 +13,8 @@ namespace HotelManagement.DataLayer
         private String ConnStr;
         public MenuItemDAO()
         {
-            ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
-            //ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            //ConnStr = "Data Source=VIDHYAMINI\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
+            ConnStr = "Data Source=LIGHT\\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True";
             //ConnStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HotelManagement;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
@@ -81,6 +81,18 @@ namespace HotelManagement.DataLayer
                 return menuItem;
             }
 
+        }
+        public bool isItemAvailable(string ItemName) {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from MenuItems where ItemName=@ItemName", con);
+                cmd.Parameters.AddWithValue("@ItemName", ItemName);
+                con.Open();
+                using (SqlDataReader rdr = cmd.ExecuteReader())
+                { 
+                    return rdr.HasRows;
+                }
+            }
         }
              
 

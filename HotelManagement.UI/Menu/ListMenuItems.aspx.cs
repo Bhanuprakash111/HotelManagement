@@ -13,17 +13,14 @@ namespace HotelManagement.UI.Menu
         MenuItemBO menuItemBO = new MenuItemBO();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
+            Page pg = (Page)sender;
             CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDown.SelectedValue);
-            CardRepeater.DataBind();
             WarningLabel.Text = "";
+            CardRepeater.DataBind();
         }
 
         protected void MenuDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-
             CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDown.SelectedValue);
             CardRepeater.DataBind();
         }
@@ -74,6 +71,15 @@ namespace HotelManagement.UI.Menu
                 WarningLabel.Text = "Item is Already in the cart";
             }
             
+        }
+
+        protected void CardRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Entities.MenuItem item = (Entities.MenuItem)e.Item.DataItem;
+            if (item.Availability.Equals("no")){
+                LinkButton btn = (LinkButton)e.Item.FindControl("AddToCart");
+                btn.Attributes.Add("disabled", "true");
+            };
         }
     }
 }

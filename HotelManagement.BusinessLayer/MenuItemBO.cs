@@ -31,7 +31,9 @@ namespace HotelManagement.BusinessLayer
         {
             return MenuItemDAO.GetMenuItem(ItemName);
         }
-
+        public bool isItemAvailable(string ItemName) { 
+            return MenuItemDAO.isItemAvailable(ItemName);
+        }
         public ICollection<MenuItem> GetAllMenuItemsByCategory(string Category)
         {
             return MenuItemDAO.GetAllMenuItemsByCategory(Category);

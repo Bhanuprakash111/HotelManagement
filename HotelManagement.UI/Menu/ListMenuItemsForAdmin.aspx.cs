@@ -60,9 +60,16 @@ namespace HotelManagement.UI.Menu
             menuItem.Cost= AddItemCost.Text;
             menuItem.Availability= AddItemAvailability.Text;
             menuItem.Image=AddItemImage.Text;
-            menuItemBO.AddMenuItem(menuItem);
-            
-            Response.Redirect("ListMenuItemsForAdmin");
+            if (menuItemBO.isItemAvailable(menuItem.ItemName)) {
+                AddWarning.Text = "Item is already in the Menu"; 
+                
+            }
+            else {
+                menuItemBO.AddMenuItem(menuItem);
+                Response.Redirect("ListMenuItemsForAdmin");
+            }
+           
+
         }
     }
 }

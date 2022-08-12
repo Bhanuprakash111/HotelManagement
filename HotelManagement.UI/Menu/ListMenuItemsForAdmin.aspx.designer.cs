@@ -24,6 +24,15 @@ namespace HotelManagement.UI.Menu
         protected global::System.Web.UI.WebControls.DropDownList MenuDropDownAdmin;
 
         /// <summary>
+        /// AddWarning control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AddWarning;
+
+        /// <summary>
         /// AddItemName control.
         /// </summary>
         /// <remarks>

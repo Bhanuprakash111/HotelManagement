@@ -15,7 +15,6 @@
             <asp:ListItem>Drinks</asp:ListItem>
             <asp:ListItem>Soups</asp:ListItem>
         </asp:DropDownList>
-
         <asp:LinkButton class="ml-3 lead btn btn-primary" runat="server" Style="cursor: pointer; color: dodgerblue" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight" data-toggle="modal" data-target="#AddMenuItem">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
@@ -23,6 +22,7 @@
             <span class="text-light">Add Item</span>
         </asp:LinkButton>
     </div>
+    <asp:Label ID="AddWarning" ForeColor="Red" CssClass="offset-5" runat="server"></asp:Label>
     <div class="modal fade" id="AddMenuItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

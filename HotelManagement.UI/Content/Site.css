@@ -1,1 +1,4 @@
-﻿
+﻿a[disabled], a[disabled]:hover {
+    pointer-events: none;
+    background-color: #e1e1e1;
+}

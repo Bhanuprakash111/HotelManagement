@@ -43,7 +43,7 @@
                         <label for="mobilenumber">Mobile Number</label>
                         <asp:TextBox ID="mobileNumber" class="form-control" type="number" required="true" runat="server" Width="400px"></asp:TextBox>
                     </div>
-                    <asp:Label ID="SignUpWarningText" CssClass="text-center" runat="server" ForeColor="Red"></asp:Label>
+                    <asp:Label ID="SignUpWarningText" CssClass="text-center d-block" runat="server" ForeColor="Red"></asp:Label>
                     <asp:Button ID="Button1" runat="server" class="offset-3 mt-2 btn btn-primary" Text="Register" OnClick="Button1_Click" />
                     <asp:LinkButton ID="LinkButton1" href="login.aspx" class="btn btn-dark mt-2 ml-3" runat="server">Back</asp:LinkButton>
                 </form>
