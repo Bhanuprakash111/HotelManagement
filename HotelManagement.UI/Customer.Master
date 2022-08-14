@@ -52,7 +52,7 @@
                         <a class="nav-link" runat="server"  href="Orders/OrderHistory">Orders History</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" runat="server"  href="#">My Profile</a>
+                        <a class="nav-link" runat="server"  href="UserActions/UserProfile">My Profile</a>
                     </li>
                     <li class="nav-item">
                         <asp:LinkButton ID="Logout" class="nav-link" runat="server" style="margin-left:600px;" OnClick="Logout_Click">Logout</asp:LinkButton>
