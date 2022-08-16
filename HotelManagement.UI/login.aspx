@@ -7,16 +7,49 @@
     <title>Login Form</title>
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/Content/css") %>
+        <%: Styles.Render("~/Content/toastr") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/MsAjaxJs") %>
     </asp:PlaceHolder>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+        <%: Scripts.Render("~/bundles/toastr") %>
+    </asp:PlaceHolder>
+    <script type="text/javascript">
+        function ToastrNotification(msg, status) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr[status](msg);
+        };
+        /*ToastrNotification('Login Failed', 'error');*/
+        /*$(window).on("load", function () {
+            toastr.error("login failed");
+        });*/
+        
+    </script>
 </head>
 <body>
     <div class="d-flex mt-2">
         <div class="">
             <span class="font-weight-bolder h3 ml-5  d-block">Food Mafia</span>
             <span class="h6 ml-5 ">Food For Every Taste</span>
-         </div>
+        </div>
         <h4 class="text-center mt-3 offset-3">Log In to Your Food Mafia Account!</h4>
     </div>
     <hr />
@@ -44,10 +77,5 @@
             </div>
         </div>
     </div>
-
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/jquery") %>
-        <%: Scripts.Render("~/bundles/bootstrap") %>
-    </asp:PlaceHolder>
 </body>
 </html>

@@ -46,7 +46,7 @@ namespace HotelManagement.UI.Cart
             order.TotalCost = (Convert.ToInt32(order.TotalCost) - item.ItemTotal).ToString();
             ob.EditOrder(order);
             cb.DeleteItem(id);
-            Response.Redirect("ListCartItems");
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void Quantity_TextChanged(object sender, EventArgs e)
@@ -76,6 +76,19 @@ namespace HotelManagement.UI.Cart
             order.OrderStatus = "Placed";
             ob.EditOrder(order);
             Response.Redirect("../Orders/OrderHistory");
+        }
+
+        private string CallToastr(string msg, string status)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }

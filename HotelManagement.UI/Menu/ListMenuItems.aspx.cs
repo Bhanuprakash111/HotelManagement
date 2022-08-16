@@ -64,7 +64,7 @@ namespace HotelManagement.UI.Menu
             
             if (!cartItemBO.isInCart(ct.MenuItemItemName, ct.OrderOrderId))
             {
-                
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ct.MenuItemItemName+" added to cart!!","success"),true);
                 cartItemBO.AddItem(ct);
             }
             else {
@@ -82,6 +82,19 @@ namespace HotelManagement.UI.Menu
             };
             Image btn1 = (Image)e.Item.FindControl("ClientImage");
             btn1.ImageUrl = "~/Content/images/" + item.Image + ".jpg";
+        }
+
+        private string CallToastr(string msg, string status)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }

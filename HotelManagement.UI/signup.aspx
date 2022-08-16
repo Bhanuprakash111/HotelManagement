@@ -7,6 +7,7 @@
     <title></title>
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/Content/css") %>
+        <%: Styles.Render("~/Content/toastr") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/MsAjaxJs") %>
     </asp:PlaceHolder>
@@ -37,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <asp:TextBox ID="address" class="form-control" AutoCompleteType="HomeStreetAddress" required="true" runat="server" Width="400px"></asp:TextBox>
+                        <textarea class="form-control" id="address" runat="server" rows="3" maxlength="250" style="resize: none;width:400px"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="mobilenumber">Mobile Number</label>
@@ -53,6 +54,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/jquery") %>
         <%: Scripts.Render("~/bundles/bootstrap") %>
+        <%: Scripts.Render("~/bundles/toastr") %>
     </asp:PlaceHolder>
 </body>
 </html>

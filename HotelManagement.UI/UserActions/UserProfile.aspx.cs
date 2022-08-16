@@ -116,5 +116,18 @@ namespace HotelManagement.UI.UserActions
         {
             Response.Redirect(Request.RawUrl);
         }
+
+        private string CallToastr(string msg, string status)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
+        }
     }
 }

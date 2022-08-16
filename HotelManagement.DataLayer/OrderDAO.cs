@@ -147,7 +147,7 @@ namespace HotelManagement.DataLayer
             List<Order> Orders = new List<Order>();
             using (SqlConnection con = new SqlConnection(ConnStr))
             {
-                SqlCommand cmd = new SqlCommand("Select * from Orders where UserUserName=@UserName", con);
+                SqlCommand cmd = new SqlCommand("Select * from Orders where UserUserName=@UserName Order by Date DESC", con);
                 cmd.Parameters.AddWithValue("@UserName", UserName);
                 con.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())

@@ -31,7 +31,7 @@ namespace HotelManagement.UI
                 User usr = new User();
                 usr.UserName = userName.Text;
                 usr.Password = password.Text;
-                usr.Address = address.Text;
+                usr.Address = address.Value;
                 usr.MobileNumber = mobileNumber.Text;
                 userBO.AddUser(usr);
                 

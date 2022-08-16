@@ -15,7 +15,6 @@ namespace HotelManagement.UI
         {
             Label1.Text = "";
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             UserBO userBO = new UserBO();
@@ -40,6 +39,7 @@ namespace HotelManagement.UI
             }
             else
             {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Login Failed","error"),true);
                 Label1.Text = "Incorrect UserName/Password";
             }
 
@@ -48,6 +48,18 @@ namespace HotelManagement.UI
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Redirect("signup.aspx");
+        }
+
+        private string CallToastr(string msg, string status) {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }

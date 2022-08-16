@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CustomerContent" runat="server">
 
     <!-- Modal -->
-   
+
 
     <div class="modal fade" id="OrderInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -38,7 +38,7 @@
                                     </table>
                                 </LayoutTemplate>
                                 <ItemTemplate>
-                                   
+
                                     <tr>
                                         <td><%#DataBinder.Eval(Container,"DataItem.MenuItemItemName") %>           
                                         </td>
@@ -51,12 +51,13 @@
                                         </td>
                                     </tr>
                                 </ItemTemplate>
-                                
+
                             </asp:ListView>
-                           
+
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <div class="text-right mr-5 font-weight-bold">Grand Total :  <asp:Label ID="GrandTotal" runat="server" ></asp:Label></div>
+                    <div class="text-right mr-5 font-weight-bold">Grand Total : 
+                        <asp:Label ID="GrandTotal" runat="server"></asp:Label></div>
 
                 </div>
                 <div class="modal-footer">
@@ -67,7 +68,7 @@
     </div>
     <div class="container">
         <div class="h4 mt-3 mb-3">Your Order History :</div>
-        <asp:ListView ID="OrderListView" runat="server">
+        <asp:ListView ID="OrderListView" runat="server" OnItemDataBound="OrderListView_ItemDataBound">
             <EmptyDataTemplate>
                 <div class="mt-5 h2 text-center">No Order history</div>
             </EmptyDataTemplate>
@@ -94,7 +95,9 @@
                 <tr>
                     <td><%#DataBinder.Eval(Container,"DataItem.Date") %>           
                     </td>
-                    <td><%#DataBinder.Eval(Container,"DataItem.OrderStatus") %>           
+                    <td>
+                        <asp:Label class="font-weight-bolder" ID="status" runat="server"><%#DataBinder.Eval(Container,"DataItem.OrderStatus") %>           
+                        </asp:Label>
                     </td>
                     <td><%#DataBinder.Eval(Container,"DataItem.TotalCost") %>           
                     </td>

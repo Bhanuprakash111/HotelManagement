@@ -35,5 +35,14 @@ namespace HotelManagement.UI.Orders
             ModalUpdatePanel.Update();
 
         }
+
+        protected void OrderListView_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            Entities.Order order =  (Entities.Order)e.Item.DataItem;
+            Label l = (Label)e.Item.FindControl("status");
+            if (order.OrderStatus.Equals("Inprogress")) { l.ForeColor = System.Drawing.Color.Red; }
+            else if (order.OrderStatus.Equals("Placed")) { l.ForeColor = System.Drawing.Color.Orange; }
+            else if (order.OrderStatus.Equals("Delivered")) { l.ForeColor = System.Drawing.Color.Green; }
+        }
     }
 }
