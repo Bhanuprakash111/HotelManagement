@@ -126,6 +126,7 @@
     <Content Include="Content\images\faluda.jpg" />
     <Content Include="Content\images\fanta.jpg" />
     <Content Include="Content\images\fishfry.jpg" />
+    <Content Include="Content\images\Food_header.jpg" />
     <Content Include="Content\images\french_fries.jpg" />
     <Content Include="Content\images\idli_sambar.jpg" />
     <Content Include="Content\images\idli.jpg" />
@@ -151,6 +152,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\videos\video.mp4" />
+    <Content Include="Content\videos\video1.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="login.aspx" />
