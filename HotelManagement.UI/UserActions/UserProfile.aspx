@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="container my-5 mr-5 pr-5">
+    <div class="container my-5 offset-2">
         <asp:Label ID="WarningLabel" runat="server" ForeColor="Red" CssClass="h6 offset-3"></asp:Label>
         <div class="card mt-3" style="max-width: 800px;">
             <div class="row no-gutters">

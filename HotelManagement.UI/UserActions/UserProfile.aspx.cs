@@ -54,17 +54,24 @@ namespace HotelManagement.UI.UserActions
                 }
                 ob.DeleteOrder(order.OrderId);
             }
+
             ub.DeleteUser(usr.UserName);
-            Response.Redirect("../login.aspx");
-        }   
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("User Deleted successfully", "success", "../login.aspx"), true);
+            //Response.Redirect("../login.aspx");
+        }
 
         protected void EditSave_Click(object sender, EventArgs e)
         {
             if (EditAddress.Value.Equals("") || EditPhone.Text.Equals(""))
             {
-                WarningLabel.Text = "All fields are required";
-            } else if (EditPhone.Text.Length != 10) {
-                WarningLabel.Text = "Phone number should be 10 digits";
+                //WarningLabel.Text = "All fields are required";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("All fields are required", "info", ""), true);
+
+            }
+            else if (EditPhone.Text.Length != 10) {
+                //WarningLabel.Text = "Phone number should be 10 digits";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Phone number must have 10 digits", "info", ""), true);
+
             }
             else {
                 Entities.User u = new Entities.User();
@@ -74,6 +81,8 @@ namespace HotelManagement.UI.UserActions
                 u.MobileNumber = EditPhone.Text;
                 u.UserRole = usr.UserRole;
                 ub.EditUser(u);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Details Updated!", "success", ""), true);
+
                 Response.Redirect(Request.RawUrl);
             }
         }
@@ -86,19 +95,27 @@ namespace HotelManagement.UI.UserActions
         protected void UpdatePass_Click(object sender, EventArgs e)
         {
             if (OldPassword.Text.Equals("") || NewPassword.Text.Equals("") || ConfirmNewPassword.Text.Equals("")) {
-                WarningLabel.Text = "All fields are required!!";
+                //WarningLabel.Text = "All fields are required!!";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("All fields required", "warning", ""), true);
+
             }
             else if (!OldPassword.Text.Equals(usr.Password))
             {
-                WarningLabel.Text = "You have entered a wrong password!!";
+                //WarningLabel.Text = "You have entered a wrong password!!";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Wrong Password!!", "warning", ""), true);
+
             }
             else if (OldPassword.Text.Equals(NewPassword.Text))
             {
-                WarningLabel.Text = "Your new password cannot be your existing password!!";
+                //WarningLabel.Text = "Your new password cannot be your existing password!!";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("New Password should not match existing", "warning", ""), true);
+
             }
             else if (!NewPassword.Text.Equals(ConfirmNewPassword.Text))
             {
-                WarningLabel.Text = "Confirm password donot match with new password!!";
+                //WarningLabel.Text = "Confirm password donot match with new password!!";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Passwords does not match!", "warning", ""), true);
+
             }
             else {
                 Entities.User u = new Entities.User();
@@ -117,7 +134,7 @@ namespace HotelManagement.UI.UserActions
             Response.Redirect(Request.RawUrl);
         }
 
-        private string CallToastr(string msg, string status)
+        private string CallToastr(string msg, string status,string func)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("$(document).ready(function () {");
@@ -125,6 +142,8 @@ namespace HotelManagement.UI.UserActions
             sb.Append(msg);
             sb.Append("','");
             sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
             sb.Append("');");
             sb.Append("})");
             return sb.ToString();

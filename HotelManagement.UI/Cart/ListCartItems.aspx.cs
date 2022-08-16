@@ -46,7 +46,9 @@ namespace HotelManagement.UI.Cart
             order.TotalCost = (Convert.ToInt32(order.TotalCost) - item.ItemTotal).ToString();
             ob.EditOrder(order);
             cb.DeleteItem(id);
-            Response.Redirect(Request.RawUrl);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(item.MenuItemItemName+" Deleted!!", "success", Request.RawUrl), true);
+            
+            //Response.Redirect(Request.RawUrl);
         }
 
         protected void Quantity_TextChanged(object sender, EventArgs e)
@@ -55,7 +57,8 @@ namespace HotelManagement.UI.Cart
             HiddenField hf  =(HiddenField)tb.Parent.FindControl("HiddenItemId");
             Guid id = new Guid(hf.Value);
             if(tb.Text.Equals("") || tb.Text.Equals("0") || tb.Text.StartsWith("-")){
-                CartItemWarning.Text = "Quantity cannot be less than or equal to zero (0)";
+                //CartItemWarning.Text = "Quantity cannot be less than or equal to zero (0)";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Quantity cannot be less than or equal to zero(0)", "error",""), true);
                 PlaceOrder1.Attributes.Add("disabled", "true");
             }
             else {
@@ -75,10 +78,11 @@ namespace HotelManagement.UI.Cart
             Entities.Order order = ob.GetOrderbyStatus("Inprogress", Session["username"].ToString());
             order.OrderStatus = "Placed";
             ob.EditOrder(order);
-            Response.Redirect("../Orders/OrderHistory");
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Order Placed!!", "success", "../Orders/OrderHistory"), true);
+           // Response.Redirect("../Orders/OrderHistory");
         }
 
-        private string CallToastr(string msg, string status)
+        private string CallToastr(string msg, string status,string func)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("$(document).ready(function () {");
@@ -86,6 +90,8 @@ namespace HotelManagement.UI.Cart
             sb.Append(msg);
             sb.Append("','");
             sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
             sb.Append("');");
             sb.Append("})");
             return sb.ToString();

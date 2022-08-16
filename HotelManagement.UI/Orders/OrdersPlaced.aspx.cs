@@ -23,7 +23,8 @@ namespace HotelManagement.UI.Orders
             Entities.Order order = ob.GetOrder(id);
             order.OrderStatus = "Delivered";
             ob.EditOrder(order);
-            Response.Redirect("OrdersPlaced");
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Order Delivered successfully", "success", Request.RawUrl), true);
+            //Response.Redirect("OrdersPlaced");
         }
         protected void AdminOrderMoreInfo_Click(object sender, EventArgs e) {
             LinkButton btn = (LinkButton)sender;
@@ -44,6 +45,19 @@ namespace HotelManagement.UI.Orders
 
             GrandTotal.Text = odr.TotalCost;
         }
-        
+        private string CallToastr(string msg, string status, string func)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
+        }
     }
 }

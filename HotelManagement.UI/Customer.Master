@@ -19,7 +19,7 @@
     </asp:PlaceHolder>
 
     <script type="text/javascript">
-        function ToastrNotification(msg, status) {
+        function ToastrNotification(msg, status,func) {
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -30,12 +30,13 @@
                 "onclick": null,
                 "showDuration": "300",
                 "hideDuration": "1000",
-                "timeOut": "5000",
+                "timeOut": "1500",
                 "extendedTimeOut": "1000",
                 "showEasing": "swing",
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+                "hideMethod": "fadeOut",
+                "onHidden": function () { window.location=func; }
             }
             toastr[status](msg);
         };
@@ -43,6 +44,7 @@
         /*$(window).on("load", function () {
             toastr.error("login failed");
         });*/
+        
         
     </script>
 </head>

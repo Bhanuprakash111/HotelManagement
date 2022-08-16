@@ -64,11 +64,13 @@ namespace HotelManagement.UI.Menu
             
             if (!cartItemBO.isInCart(ct.MenuItemItemName, ct.OrderOrderId))
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ct.MenuItemItemName+" added to cart!!","success"),true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ct.MenuItemItemName+" added to cart!!","success",""),true);
                 cartItemBO.AddItem(ct);
             }
             else {
-                WarningLabel.Text = "Item is Already in the cart";
+                //WarningLabel.Text = "Item is Already in the cart";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item is Already in the cart", "error", ""), true);
+                
             }
             
         }
@@ -84,7 +86,7 @@ namespace HotelManagement.UI.Menu
             btn1.ImageUrl = "~/Content/images/" + item.Image + ".jpg";
         }
 
-        private string CallToastr(string msg, string status)
+        private string CallToastr(string msg, string status,string func)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("$(document).ready(function () {");
@@ -92,6 +94,8 @@ namespace HotelManagement.UI.Menu
             sb.Append(msg);
             sb.Append("','");
             sb.Append(status);
+            sb.Append("','");
+            sb.Append(func);
             sb.Append("');");
             sb.Append("})");
             return sb.ToString();
