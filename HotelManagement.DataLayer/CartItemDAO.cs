@@ -96,6 +96,17 @@ namespace HotelManagement.DataLayer
             }
 
         }
+        public Int32 GetCount(Guid OrderId)
+        {
+            using (SqlConnection con = new SqlConnection(ConnStr))
+            {
+                SqlCommand cmd = new SqlCommand("Select COUNT(*) from CartItems where OrderOrderId=@OrderId", con);
+                cmd.Parameters.AddWithValue("@OrderId", OrderId);
+                con.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+
+        }
         public bool isInCart(string ItemName, Guid OrderId) {
             using (SqlConnection con = new SqlConnection(ConnStr))
             {

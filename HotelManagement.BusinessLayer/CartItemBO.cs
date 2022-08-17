@@ -42,7 +42,12 @@ namespace HotelManagement.BusinessLayer
         {
             return CartItemDAO.GetItemsbyOrderId(OrderId);
         }
-        
+        public Int32 GetCount(Guid OrderId)
+        {
+            return CartItemDAO.GetCount(OrderId);
+        }
+
+
     }
 
 }

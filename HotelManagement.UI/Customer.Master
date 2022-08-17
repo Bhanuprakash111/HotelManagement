@@ -84,7 +84,7 @@
                         <a class="nav-link" runat="server"  href="Menu/ListMenuItems">Menu<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" runat="server"  href="Cart/ListCartItems">Cart</a>
+                        <a class="nav-link" runat="server"  href="Cart/ListCartItems">Cart<sup class="badge badge-danger" style="border-radius:50%"><asp:Label ID="Cart_Count" runat="server"></asp:Label></sup></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" runat="server"  href="Orders/OrderHistory">Orders History</a>

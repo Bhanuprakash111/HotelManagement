@@ -15,6 +15,15 @@ namespace HotelManagement.UI
     {
 
         /// <summary>
+        /// Cart_Count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Cart_Count;
+
+        /// <summary>
         /// Logout control.
         /// </summary>
         /// <remarks>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManagement.BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,14 @@ namespace HotelManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
+            
+            CartItemBO cb = new CartItemBO();
+            OrderBO ob = new OrderBO();
+            
+            Entities.Order o= ob.GetOrderbyStatus("Inprogress",Session["username"].ToString());
+            Cart_Count.Text = cb.GetCount(o.OrderId).ToString();
+            
         }
 
         protected void Logout_Click(object sender, EventArgs e)

@@ -18,11 +18,21 @@ namespace HotelManagement.UI.Menu
             WarningLabel.Text = "";
             CardRepeater.DataBind();
         }
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            if (!(Session["selectedvalue"] is null))
+            {
+                MenuDropDown.SelectedValue = Session["selectedvalue"].ToString();
+                CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(Session["selectedvalue"].ToString());
+                CardRepeater.DataBind();
+            }
+        }
 
         protected void MenuDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             CardRepeater.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDown.SelectedValue);
             CardRepeater.DataBind();
+            Session["selectedvalue"] = MenuDropDown.SelectedValue;
         }
 
         protected void AddToCart_Click(object sender, EventArgs e)
@@ -64,7 +74,7 @@ namespace HotelManagement.UI.Menu
             
             if (!cartItemBO.isInCart(ct.MenuItemItemName, ct.OrderOrderId))
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ct.MenuItemItemName+" added to cart!!","success","#"),true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ct.MenuItemItemName+" added to cart!!","success",Request.RawUrl),true);
                 cartItemBO.AddItem(ct);
             }
             else {
@@ -72,7 +82,8 @@ namespace HotelManagement.UI.Menu
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item is Already in the cart", "error", "#"), true);
                 
             }
-            
+           
+
         }
 
         protected void CardRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)

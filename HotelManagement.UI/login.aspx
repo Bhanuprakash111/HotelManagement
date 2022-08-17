@@ -79,9 +79,9 @@
     </style>
 </head>
 <body>
-    <div class="">
+    <div class="" style="overflow-x: hidden;overflow-y: hidden;max-width: 100%;">
         <asp:Image ID="headerFood" Height="140px" CssClass="img-fluid img" Width="100%" ImageUrl="~/Content/images/Food_header.jpg" AlternateText="FoodHeader" runat="server" />
-        <div class="hr py-0 my-0"></div>
+       
         <div class="row mt-3 ml-5">
             <div class="col-lg-6 col-sm-12 text-center">
                 <div class="my-container">
