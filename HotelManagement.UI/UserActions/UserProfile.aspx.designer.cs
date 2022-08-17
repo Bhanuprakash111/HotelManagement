@@ -141,13 +141,13 @@ namespace HotelManagement.UI.UserActions
         protected global::System.Web.UI.WebControls.TextBox OldPassword;
 
         /// <summary>
-        /// NewPassword control.
+        /// validationPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword validationPassword;
 
         /// <summary>
         /// ConfirmNewPassword control.

@@ -93,7 +93,7 @@ namespace HotelManagement.UI.UserActions
 
         protected void UpdatePass_Click(object sender, EventArgs e)
         {
-            if (OldPassword.Text.Equals("") || NewPassword.Text.Equals("") || ConfirmNewPassword.Text.Equals("")) {
+            if (OldPassword.Text.Equals("") || validationPassword.Value.Equals("") || ConfirmNewPassword.Text.Equals("")) {
                 //WarningLabel.Text = "All fields are required!!";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("All fields required", "warning", "#"), true);
 
@@ -104,13 +104,13 @@ namespace HotelManagement.UI.UserActions
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Wrong Password!!", "warning", "#"), true);
 
             }
-            else if (OldPassword.Text.Equals(NewPassword.Text))
+            else if (OldPassword.Text.Equals(validationPassword.Value))
             {
                 //WarningLabel.Text = "Your new password cannot be your existing password!!";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("New Password should not match existing", "warning", "#"), true);
 
             }
-            else if (!NewPassword.Text.Equals(ConfirmNewPassword.Text))
+            else if (!validationPassword.Value.Equals(ConfirmNewPassword.Text))
             {
                 //WarningLabel.Text = "Confirm password donot match with new password!!";
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Passwords does not match!", "warning", "#"), true);
@@ -119,7 +119,7 @@ namespace HotelManagement.UI.UserActions
             else {
                 Entities.User u = new Entities.User();
                 u.UserName=usr.UserName;
-                u.Password = NewPassword.Text;
+                u.Password = validationPassword.Value;
                 u.Address = usr.Address;
                 u.MobileNumber=usr.MobileNumber;
                 u.UserRole= usr.UserRole;
