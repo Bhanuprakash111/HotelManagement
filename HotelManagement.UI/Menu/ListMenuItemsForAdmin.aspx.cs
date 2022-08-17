@@ -12,23 +12,34 @@ namespace HotelManagement.UI.Menu
     {
         /*I have only included AjaxToolKit but havenot used it*/
         MenuItemBO menuItemBO = new MenuItemBO();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             CardRepeaterAdmin.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDownAdmin.SelectedValue);
             CardRepeaterAdmin.DataBind();
+        }
+        protected void Page_LoadComplete(object sender, EventArgs e) {
+            if (!(Session["selectedvalue"] is null))
+            {
+                MenuDropDownAdmin.SelectedValue = Session["selectedvalue"].ToString();
+                AddItemCategory.SelectedValue = Session["selectedvalue"].ToString();
+                CardRepeaterAdmin.DataSource = menuItemBO.GetAllMenuItemsByCategory(Session["selectedvalue"].ToString());
+                CardRepeaterAdmin.DataBind();
+            }
         }
 
         protected void MenuDropDownAdmin_SelectedIndexChanged(object sender, EventArgs e)
         {
             CardRepeaterAdmin.DataSource = menuItemBO.GetAllMenuItemsByCategory(MenuDropDownAdmin.SelectedValue);
             CardRepeaterAdmin.DataBind();
+            Session["selectedvalue"] = MenuDropDownAdmin.SelectedValue;
         }
         protected void DeleteButton_Click(object sender, EventArgs e) {
             LinkButton delBtn = (LinkButton)sender;
             menuItemBO.DeleteMenuItem(delBtn.CommandArgument.ToString());
             
            
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(delBtn.CommandArgument.ToString() + " Deleted Successfully", "success", ""), true);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(delBtn.CommandArgument.ToString() + " Deleted Successfully", "success", Request.RawUrl), true);
 
             //Response.Redirect("ListMenuItemsForAdmin");
         }
@@ -55,13 +66,13 @@ namespace HotelManagement.UI.Menu
             if (menuItem.Cost.StartsWith("-") || menuItem.Cost.Equals("0") || menuItem.Cost.Equals(""))
             {
                 //AddWarning.Text = "Cost Cannot be less than or equal to zero(0)";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Cost Cannot be less than or equal to zero(0)", "warning", ""), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Cost Cannot be less than or equal to zero(0)", "warning", "#"), true);
             }
             else
             {
                 menuItemBO.EditMenuItem(menuItem);
+                
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(menuItem.ItemName+" Edited Successfully", "success", Request.RawUrl), true);
-
                 //Response.Redirect("ListMenuItemsForAdmin");
             }
 
@@ -77,20 +88,20 @@ namespace HotelManagement.UI.Menu
             if (menuItemBO.isItemAvailable(menuItem.ItemName))
             {
                 // AddWarning.Text = "Item is already in the Menu";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item is already in the Menu", "error", ""), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item is already in the Menu", "error", "#"), true);
 
 
             }
             else if (menuItem.Cost.StartsWith("-") || menuItem.Cost.Equals("0") || menuItem.Cost.Equals(""))
             {
                 //AddWarning.Text = "Cost Cannot be less than or equal to zero(0)";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Cost Cannot be less than or equal to zero(0)", "error", ""), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Cost Cannot be less than or equal to zero(0)", "error", "#"), true);
 
             }
             else if (menuItem.ItemName.Equals("")) {
                 // AddWarning.Text = "Item Name Cannot be empty";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item name cannot be empty", "error", ""), true);
-
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item name cannot be empty", "error", "#"), true);
+                
             }
             else
             {

@@ -64,12 +64,12 @@ namespace HotelManagement.UI.Menu
             
             if (!cartItemBO.isInCart(ct.MenuItemItemName, ct.OrderOrderId))
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ct.MenuItemItemName+" added to cart!!","success",""),true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(ct.MenuItemItemName+" added to cart!!","success","#"),true);
                 cartItemBO.AddItem(ct);
             }
             else {
                 //WarningLabel.Text = "Item is Already in the cart";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item is Already in the cart", "error", ""), true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Item is Already in the cart", "error", "#"), true);
                 
             }
             

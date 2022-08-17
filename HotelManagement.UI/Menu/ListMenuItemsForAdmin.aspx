@@ -6,7 +6,7 @@
     <div class="h4 my-3 ml-5 pl-2">Welcome Admin, <span class="font-italic text-info"><%=Session["username"] %></span></div>
     <div class="d-flex mt-3 offset-3">
         <span class="lead p-1">Select your Style : </span>
-        <asp:DropDownList ID="MenuDropDownAdmin" CssClass="custom-select ml-4 w-25" runat="server" AutoPostBack="True" OnSelectedIndexChanged="MenuDropDownAdmin_SelectedIndexChanged">
+        <asp:DropDownList ID="MenuDropDownAdmin" CssClass="custom-select ml-4 w-25" runat="server" AutoPostBack="True" OnSelectedIndexChanged="MenuDropDownAdmin_SelectedIndexChanged" AppendDataBoundItems="True">
             <asp:ListItem>Breakfast</asp:ListItem>
             <asp:ListItem>Starters</asp:ListItem>
             <asp:ListItem>Desserts</asp:ListItem>

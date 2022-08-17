@@ -11,6 +11,38 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/MsAjaxJs") %>
     </asp:PlaceHolder>
+     <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+        <%: Scripts.Render("~/bundles/toastr") %>
+    </asp:PlaceHolder>
+     <script type="text/javascript">
+        function ToastrNotification(msg, status) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr[status](msg);
+        };
+        /*ToastrNotification('Login Failed', 'error');*/
+        /*$(window).on("load", function () {
+            toastr.error("login failed");
+        });*/
+
+     </script>
 </head>
 <body>
     <div class="d-flex mt-2">
@@ -51,10 +83,6 @@
             </div>
         </div>
     </div>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/jquery") %>
-        <%: Scripts.Render("~/bundles/bootstrap") %>
-        <%: Scripts.Render("~/bundles/toastr") %>
-    </asp:PlaceHolder>
+   
 </body>
 </html>

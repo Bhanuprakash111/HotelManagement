@@ -34,6 +34,7 @@ namespace HotelManagement.UI
                 }
                 else
                 {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Login Failed", "error"), true);
                     Label1.Text = "Incorrect UserName/Password";
                 }
             }

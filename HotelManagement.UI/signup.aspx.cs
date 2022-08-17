@@ -21,10 +21,12 @@ namespace HotelManagement.UI
             UserBO userBO = new UserBO();
             if (mobileNumber.Text.Length != 10)
             {
-                SignUpWarningText.Text = "Mobile number should have 10 digits";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Mobile number should have 10 digits", "warning"), true);
+                //SignUpWarningText.Text = "Mobile number should have 10 digits";
             }
             else if(userBO.IsUserNameAvailable(userName.Text)) {
-                SignUpWarningText.Text = "UserName is Already Taken";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("UserName is Already Taken", "error"), true);
+                //SignUpWarningText.Text = "UserName is Already Taken";
             }
             else
             {
@@ -37,6 +39,19 @@ namespace HotelManagement.UI
                 
                 Response.Redirect("login.aspx");
             }
+        }
+
+        private string CallToastr(string msg, string status)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append("$(document).ready(function () {");
+            sb.Append("ToastrNotification('");
+            sb.Append(msg);
+            sb.Append("','");
+            sb.Append(status);
+            sb.Append("');");
+            sb.Append("})");
+            return sb.ToString();
         }
     }
 }
