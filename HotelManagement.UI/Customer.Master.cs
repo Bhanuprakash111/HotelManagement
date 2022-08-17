@@ -16,9 +16,14 @@ namespace HotelManagement.UI
             
             CartItemBO cb = new CartItemBO();
             OrderBO ob = new OrderBO();
-            
-            Entities.Order o= ob.GetOrderbyStatus("Inprogress",Session["username"].ToString());
-            Cart_Count.Text = cb.GetCount(o.OrderId).ToString();
+            if (ob.AnyOrderStandBy(Session["username"].ToString()))
+            {
+                Entities.Order o = ob.GetOrderbyStatus("Inprogress", Session["username"].ToString());
+                Cart_Count.Text = cb.GetCount(o.OrderId).ToString();
+            }
+            else {
+                Cart_Count.Text = "0";
+            }
             
         }
 

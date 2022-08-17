@@ -75,11 +75,14 @@ namespace HotelManagement.UI.Cart
 
         protected void PlaceOrder1_Click(object sender, EventArgs e)
         {
-            Entities.Order order = ob.GetOrderbyStatus("Inprogress", Session["username"].ToString());
-            order.OrderStatus = "Placed";
-            ob.EditOrder(order);
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Order Placed!!", "success", "../Orders/OrderHistory"), true);
-           // Response.Redirect("../Orders/OrderHistory");
+            if (ob.AnyOrderStandBy(Session["username"].ToString()))
+            {
+                Entities.Order order = ob.GetOrderbyStatus("Inprogress", Session["username"].ToString());
+                order.OrderStatus = "Placed";
+                ob.EditOrder(order);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr("Order Placed!!", "success", "../Orders/OrderHistory"), true);
+            }
+            // Response.Redirect("../Orders/OrderHistory");
         }
 
         private string CallToastr(string msg, string status,string func)
