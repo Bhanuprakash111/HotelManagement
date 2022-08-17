@@ -19,7 +19,7 @@
     </asp:PlaceHolder>
 
     <script type="text/javascript">
-        function ToastrNotification(msg, status,func) {
+        function ToastrNotification(msg, status, func) {
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -36,7 +36,7 @@
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut",
-                "onHidden": function () { window.location=func; }
+                "onHidden": function () { window.location = func; }
             }
             toastr[status](msg);
         };
@@ -44,8 +44,8 @@
         /*$(window).on("load", function () {
             toastr.error("login failed");
         });*/
-        
-        
+
+
     </script>
 </head>
 <body>
@@ -69,35 +69,38 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="d-flex flex-column mr-4">
-                <span class="font-weight-bolder h4 ml-5 pl-2 my-0">Food Mafia</span>
-                <span class="h6 ml-5 mb-0">Food For Every Taste</span>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        
+           
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style='background-image:url("https://raw.githubusercontent.com/VIJAY520354/firstrepo/master/Woodimg.jpg");background-repeat:no-repeat;background-size:cover;padding-top:20px;padding-bottom:20px' runat="server" >
+                <div class="d-flex flex-column mr-4 text-light ">
+                    <span class="font-weight-bolder h3 ml-5 pl-2 my-0">Food Mafia</span>
+                    <span class="h6 pl-2 ml-5 mb-0">Food For Every Taste</span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" runat="server"  href="Menu/ListMenuItems">Menu<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" runat="server"  href="Cart/ListCartItems">Cart<sup class="badge badge-danger" style="border-radius:50%"><asp:Label ID="Cart_Count" runat="server"></asp:Label></sup></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" runat="server"  href="Orders/OrderHistory">Orders History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" runat="server"  href="UserActions/UserProfile">My Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <asp:LinkButton ID="Logout" class="nav-link" runat="server" style="margin-left:600px;" OnClick="Logout_Click">Logout</asp:LinkButton>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active h5">
+                            <a class="nav-link" runat="server" href="Menu/ListMenuItems">Menu<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active h5">
+                            <a class="nav-link" runat="server" href="Cart/ListCartItems">Cart<sup class="badge badge-danger" style="border-radius: 50%"><asp:Label ID="Cart_Count" runat="server"></asp:Label></sup></a>
+                        </li>
+                        <li class="nav-item active h5">
+                            <a class="nav-link" runat="server" href="Orders/OrderHistory">Orders History</a>
+                        </li>
+                        <li class="nav-item active h5">
+                            <a class="nav-link" runat="server" href="UserActions/UserProfile">My Profile</a>
+                        </li>
+                        <li class="nav-item active h5">
+                            <asp:LinkButton ID="Logout" class="nav-link" runat="server"  OnClick="Logout_Click">Logout</asp:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        
         <div class="container-fluid">
             <asp:ContentPlaceHolder ID="CustomerContent" runat="server">
             </asp:ContentPlaceHolder>
