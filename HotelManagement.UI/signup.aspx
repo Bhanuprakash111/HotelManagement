@@ -120,7 +120,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <textarea class="form-control" id="address" runat="server" rows="1" maxlength="250" style="resize: none; width: 400px"></textarea>
+                        <textarea class="form-control" id="address" runat="server" rows="3" maxlength="250" style="resize: none; width: 400px"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="mobilenumber">Mobile Number</label>

@@ -25,7 +25,7 @@
         <asp:Label ID="WarningLabel" runat="server" ForeColor="Red" CssClass="h6 offset-3"></asp:Label>
         <div class="card mt-3" style="max-width: 800px;">
             <div class="row no-gutters">
-                <div class="col-4">
+                <div class="col-4 my-auto">
                     <asp:Image runat="server" ID="userProfilePic" CssClass="img-fluid img-fluid rounded" />
                 </div>
                 <div class="col-8">
@@ -95,7 +95,7 @@
                             </div>
                             <asp:Button Text="Update" OnClick="UpdatePass_Click" ID="UpdatePass" runat="server" CssClass="offset-4 btn btn-outline-success" />
 
-                            <asp:Button Text="Cancel" OnClick="CancelUpdate_Click" ID="CancelUpdate" runat="server" CssClass="ml-3 btn btn-outline-secondary" />
+                            <asp:Button Text="Cancel" OnClick="CancelUpdate_Click" ID="CancelUpdate" runat="server" CssClass="ml-3 btn btn-outline-secondary" UseSubmitBehavior="False" />
 
                         </asp:PlaceHolder>
 

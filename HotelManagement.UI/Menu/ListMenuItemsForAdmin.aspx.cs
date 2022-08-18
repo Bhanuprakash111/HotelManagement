@@ -106,6 +106,7 @@ namespace HotelManagement.UI.Menu
             else
             {
                 menuItemBO.AddMenuItem(menuItem);
+                Session["selectedvalue"] = menuItem.Category;
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "ToastrNotification", CallToastr(menuItem.ItemName+" Added Successfully", "success", Request.RawUrl), true);
                 //Response.Redirect("ListMenuItemsForAdmin");
             }

@@ -11,7 +11,10 @@ namespace HotelManagement.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["userrole"] is null || !Session["userrole"].ToString().Equals("Admin")) {
+                Session.Abandon();
+                Response.Redirect("../login.aspx");
+            }
         }
 
         protected void AdminLogout_Click(object sender, EventArgs e)
